@@ -1,0 +1,13 @@
+#から行末までがコメントになります。範囲コメントはありません。
+:verbose: true
+:sources: 
+- http://gems.rubyforge.org/
+- http://gems.github.com/
+:benchmark: false
+:backtrace: false
+:update_sources: true
+:bulk_threshold: 1000
+install: --no-ri --no-rdoc
+update: --no-ri --no-rdoc
+gem: --no-ri --no-rdoc
+

@@ -1,0 +1,262 @@
+snippet doctypetransitional
+    <!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+snippet doctypeframeset
+    <!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+snippet doctypestrict
+    <!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+snippet xhtml
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        ${1}
+    </html>
+snippet head
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=${1:utf-8}">
+        <title>${2}</title>
+    <style type="text/css">
+        ${3}
+    </style>
+        ${4}
+    </head>
+
+snippet metaauthor
+    <meta name="author" content="${1}">
+snippet keywords
+    <meta name="keywords" content="${1}">
+snippet metaothers
+    <meta name="others" content="${1}">
+snippet metagenerator
+    <meta name="generator" content="${1}">
+snippet metadescription
+    <meta name="description" content="${1}">
+
+snippet scriptcharset
+    <script type="text/javascript" charset="${1:UTF-8}">
+    ${2}
+    </script>
+snippet script
+    <script type="text/javascript">
+    ${1}
+    </script>
+
+snippet body
+    <body>
+       ${1}
+    </body>
+
+snippet h
+    <h${1:1}>${2}</h$1>
+
+snippet p
+    <p>${1}</p>
+
+snippet br
+    <br />
+
+snippet hr
+    <hr />
+
+snippet comment
+    <!--${1}-->
+
+snippet b
+    <b>${1}</b>
+snippet small
+    <small>${1}</small>
+snippet strong
+    <strong>${1}</strong>
+snippet sub
+    <sub>${1}</sub>
+snippet sup
+    <sup>${1}</sup>
+snippet ins
+    <ins>${1}</ins>
+snippet del
+    <del>${1}</del>
+snippet em
+    <em>${1}</em>
+snippet bdo
+    <bdo dir="${1:rtl}">${2}</bdo>
+snippet pre
+    <pre>
+    ${1}
+    </pre>
+snippet blockquote
+    <blockquote>
+    ${1}
+    </blockquote>
+
+snippet link
+abbr    link stylesheet css
+    <link rel="${1:stylesheet}" href="${2}.css" type="text/css" media="${3:screen}" charset="utf-8">
+
+snippet alignl
+    text-align="left"
+snippet alignr
+    text-align="right"
+snippet alignc
+    text-align="center"
+
+snippet bgcolor
+    bgcolor="${1}"
+
+snippet ahref
+    <a href="${1}">${2}</a>
+snippet ahref_blank
+    <a href="${1}" target="_blank">${2}</a>
+snippet ahref_parent
+    <a href="${1}" target="_parent">${2}</a>
+snippet ahref_top
+    <a href="${1}" target="_top">${2}</a>
+snippet aname
+    <a name="${1}">${2}</a>
+
+snippet framesetcols
+    <frameset cols="${1}">
+    ${2}
+    </frameset>
+snippet framesetrows
+    <frameset rows="${1}"
+    ${2}
+    </frameset>
+
+snippet iframe
+    <iframe src="${1}"></iframe>
+snippet table
+    <table border="${1}">
+    ${2}
+    </table>
+
+snippet th
+    <th>${1}</th>
+
+snippet ulsquare
+    <ul type="square">${1}</ul>
+snippet uldisc
+    <ul type="cicle">${1}</ul>
+snippet ulcicle
+    <ul type="disc">${1}</ul>
+
+snippet ulclass
+    <ul class="${1}">${2}</ul>
+
+snippet formclass
+    <form class="${1}">${2}</form>
+
+
+snippet span
+    <span class="${1}">${2}</span>
+
+
+snippet cl
+    $('${1}').${2}(function(){});
+
+snippet cli
+    $('${1}').${2}(function(){
+      ${3}
+    });
+
+snippet this
+    $(this).${1}();
+
+
+
+
+snippet ol
+    <ol>${1}</ol>
+snippet olA
+    <ol type="A">${1}</ol>
+snippet ola
+    <ol type="a">${1}</ol>
+snippet olI
+    <ol type="I">${1}</ol>
+snippet oli
+    <ol type="i">${1}</ol>
+
+snippet li
+    <li>${1}</li>
+snippet ul
+    <ul>${1}</ul>
+
+snippet dl
+    <dl>${1}</dl>
+snippet dt
+    <dt>${1}</dt>
+snippet dd
+    <dd>${1}</dd>
+
+snippet form
+    <form>
+    ${1}
+    </form>
+
+snippet inputtext
+    <input type="text" name="${1:user}">
+snippet inputpassword
+    <input type="password" name="${1:password}">
+snippet inputradio
+    <input type="radio" name="${1}" value="value">
+snippet inputcheckbox
+    <input type="checkbox" name="${1}">
+
+snippet textarea
+    <textarea rows="${1}" cols="${2}">
+    ${3}
+    </textarea>
+
+snippet button
+    <button>${1}</button>
+
+snippet select
+    <select>${1}</select>
+
+snippet optgroup
+    <optgroup label="${1}">
+    ${2}
+    <optgroup>
+snippet option
+    <option value="${1}">${2}</option>
+
+snippet label
+    <label>${1}: <input type="${2}" /><label>
+snippet labelfor
+    <label for="${1}:id">${2}</label>
+
+snippet fiedset
+    <fiedlset>${1}</fiedset>
+
+snippet legend
+    <legend>${1}</legend>
+
+snippet id
+    id="${1}"
+
+snippet class
+    class="${1}"
+
+snippet pclass
+    <p class="${1}">${2}</p>
+
+snippet pid
+    <p id="${1}">${2}</p>
+
+snippet divid
+    <div id="${1}">${2}</div>
+
+snippet divclass
+    <div class="${1}">${2}</div>
+
+snippet img
+    <img src="${1}">
+
+snippet div
+    <div ${1:id="${2:someid\}"}>${3}</div>
+

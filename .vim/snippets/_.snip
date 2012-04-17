@@ -1,0 +1,112 @@
+# Global snippets
+
+snippet     date_full
+alias       df
+    `strftime("%Y-%m-%dT%H:%M:%S")`
+
+snippet     date_day
+alias       dd
+    `strftime("%Y-%m-%d")`
+
+snippet     date_time
+alias       dt
+    `strftime("%H:%M:%S")`
+
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+#Cucumber
+
+snippet     fea
+abbr        Feature: Name
+alias       Feature feature
+prev_word   '^'
+    Feature: ${1:Name}
+
+    ${0}
+
+snippet     sce
+abbr        Scenario:
+alias       Scenario
+prev_word   '^'
+    Scenario: ${1:Name}
+    Given ${2}
+    ${0}
+
+snippet     sceout
+abbr        Scenario Outline :
+alias       ScenarioOutline
+prev_word   '^'
+    Scenario Outline: ${1:Name}
+    Given ${2}
+    ${0}
+
+
+
+
+#Cucumber methed do 
+
+
+snippet     giv
+abbr        Given a known starting condition
+alias       Given given
+prev_word   '^'
+    Given /^${1:a known starting condition}$/ do
+        ${2}
+    end
+
+    ${0}
+
+snippet     whe
+abbr        When some action
+alias       When when
+prev_word   '^'
+    When /^${1:some action}$/ do
+        ${2}
+    end
+
+    ${0}
+
+snippet     the
+abbr        Then some expected outcome
+alias       Then then
+prev_word   '^'
+    Then /^${1:some expected outcome}$/ do |${2}|
+        ${3}
+    end
+
+    ${0}
+
+snippet     and
+abbr        And some expected outcome
+alias       And AND
+prev_word   '^'
+    And /^${1:some expected outcome}$/ do |${2}|
+        ${3}
+    end
+
+    ${0}
+
+snippet     but
+abbr        But some expected outcome
+alias       But BUT
+prev_word   '^'
+    But  /^${1:some expected outcome}$/ do |${2}|
+        ${3}
+    end
+
+    ${0}
+
+

@@ -1,0 +1,18 @@
+[user]
+	name = kumonopanya
+	email = kumonopanya@gmail.com
+[github]
+	user = kumonopanya
+[color]
+	ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+[gui]
+	encoding = utf-8
+	fontui = -family \"Takao Pゴシック\" -size 16 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family Takaoゴシック -size 16 -weight normal -slant roman -underline 0 -overstrike 0
+[alias]
+	co = checkout
+	br = branch

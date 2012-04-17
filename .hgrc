@@ -1,0 +1,11 @@
+[ui]
+username=hi <kumonopanya@gmail.com>
+
+[extensions]
+graphlog=
+color=
+pager=
+
+[pager]
+pager=LESS='FSRX' less
+

@@ -1,0 +1,27 @@
+alias cp='cp -i'
+alias mv='mv -i'
+alias ll='ls -lw'
+alias la='ls -aw'
+alias le='less'
+alias gss='git stash save'
+alias gsp='git stash pop'
+galias G="| grep"
+galias T='| tail'
+galias H='| head'
+galias F='| few'
+galias P='| pbcopy'
+alias gl='git pull --rebase'
+alias pus='git push'
+alias c='git checkout'
+alias rakeg='growlnotify -n vim -m "rake started"; rake | growlnotify -n vim &'
+alias b='git branch'
+alias pingg='ping google.com'
+alias gsrd='git svn rebase && git svn dcommit'
+alias s='git status'
+alias b='git branch'
+alias c='git checkout'
+alias d='git diff'
+alias l='git log | head -80'
+
+
+
