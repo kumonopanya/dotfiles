@@ -1,16 +1,14 @@
 " vim:set ts=8 sts=2 sw=2 tw=0: (この行に関しては:help modelineを参照)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Last Change:01-Feb-2012.
 " 履歴
 "2012年1月7日（.vimrcを整理）
-"2012年2月1日（gvimでのインストール）
+"2012年4月17日（githubで管理）
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " 重要tips 基本
 "* shift+8 このコマンドはカーソルの下にある単語を検索する。
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" vimの設定 基本
@@ -30,7 +28,6 @@
 noremap ; :
 "noremap : ;
 
-
 "==========================================================
 
 
@@ -49,8 +46,6 @@ filetype off
 "Win
 ":set runtimepath+=$HOME\bundle\vundle
 "Unix
-
-
 
 "neobundle.vimランタイムパスの設定
 "Win
@@ -322,8 +317,8 @@ let g:quickrun_config._={
 "  \ 'tempfile': '{tempname()}.rb',
 "  \}
 "endif
-		
-"  \ 'command': 'ruby',		
+
+"  \ 'command': 'ruby',
 
 
 " 横分割をするようにする
@@ -460,7 +455,7 @@ autocmd BufReadPost *_spec.rb call RSpecQuickrun()
 "  \ 'exec': ['%c -v %s'],
 "}
 
-					  
+
 
 "autocmd BufWinEnter,BufNewFile test*.py set filetype=python.unit
 "let g:quickrun_config['python.unit'] = {
@@ -843,8 +838,8 @@ NeoBundle 'QuickBuf'
 " w	選択したバッファをアンロードする。「bwipeout」コマンドと同じ。
 " l	押すたびに一覧を「buflisted」「nobuflisted」のリストに切り替える
 " <ESC>	バッファ一覧を閉じる
-" 
-" 
+"
+"
 "QuickBuller.vim
 ":let g:qb_hotkey = "<F6>"
 :let g:qb_hotkey = "''"
@@ -1013,7 +1008,7 @@ NeoBundle 'mitechie/pyflakes-pathogen'
 NeoBundle 'sontek/rope-vim'
 
 " 実際の使い方としては変数名の変更を例に説明すると
-" 
+"
 " 変更したい変数名にカーソルを合わせる
 " :RopeRename を実行する（もしくは C-C rr ）
 " プロジェクトのルートディレクトリについて聞かれるので入力する
@@ -1127,9 +1122,9 @@ NeoBundle 'chrismetcalf/vim-yankring.git'
 let g:yankring_history_dir = '$HOME'
 let g:yankring_history_file = '.yankring_history'
 
-"ノーマルモード時の「p」コマンドでペーストを実行した後、 
-"・Ctrl-Pを入力すると、より古い履歴と 
-"・Ctrl-Nを入力すると、より新しい履歴と 
+"ノーマルモード時の「p」コマンドでペーストを実行した後、
+"・Ctrl-Pを入力すると、より古い履歴と
+"・Ctrl-Nを入力すると、より新しい履歴と
 "ペーストで貼付けたテキストが置き換えられます。
 
 
@@ -1338,7 +1333,7 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" 
+""tag"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -2057,9 +2052,9 @@ augroup END
 
 :highlight CursorLine gui=underline guibg=black
 
-":highlight CursorLine cterm=underline  
-:highlight CursorLine ctermbg=Black 
-":highlight CursorLine ctermfg=none 
+":highlight CursorLine cterm=underline
+:highlight CursorLine ctermbg=Black
+":highlight CursorLine ctermfg=none
 
 ":highlight Normal ctermfg=grey
 "highlight Normal ctermbg=Black
