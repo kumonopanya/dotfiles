@@ -755,13 +755,7 @@ NeoBundle 'matchit.zip'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" javascript.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"NeoBundle 'javascript.vim'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" 文法チェック JavaScript
+""tag" JavaScript 文法チェック 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "flymake rubyのシンタックスチェック、設定はruby.vimに。
@@ -785,6 +779,9 @@ function! s:javascript_filetype_settings()
   autocmd CursorMoved  <buffer> call jslint#message()
 endfunction
 autocmd FileType javascript call s:javascript_filetype_settings()
+" JavaScript, ECMAScript
+au BufNewFile,BufRead *.js,*.javascript,*.es,*.jsx	setf javascript
+
 
 "==========================================================
 
@@ -792,7 +789,9 @@ autocmd FileType javascript call s:javascript_filetype_settings()
 "  http://cside.g.hatena.ne.jp/Cside/20120112/p1
 NeoBundle 'kchmck/vim-coffee-script'
 
-autocmd BufWritePost *.coffee silent CoffeeMake! -cb | cwindow
+autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+autocmd BufWritePost *.coffee :CoffeeCompile watch vert
+autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 
 
 
@@ -1644,6 +1643,9 @@ autocmd BufNewFile,BufRead *.h    set tabstop=4 shiftwidth=4
 
 "autocmd BufNewFile,BufRead *.js   set filetype=javascript
 
+
+
+
 "ファイルタイプを自動判別してインデントを指定する
 "if has("autocmd")
 "    " ファイルタイプ別インデント、プラグインを有効にする
@@ -2215,7 +2217,7 @@ noremap gl gt
 
 "<F6>
 "vim-flake8
-autocmd FileType python map <buffer> <F6> :call Flake8()<CR>
+	autocmd FileType python map <buffer> <F6> :call Flake8()<CR>
 
 "<S-F5>
 "<S-F6>
