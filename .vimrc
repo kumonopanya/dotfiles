@@ -2232,7 +2232,11 @@ autocmd FileType python map <buffer> <F6> :call Flake8()<CR>
 	nmap <silent> <S-F8> :VersDiff -c<CR>
 
 
+
 "<F9>
+	"<F9>正確に貼りつける。
+	"貼りつけたあとは改行を一回入れる。
+	nmap <silent> <F9> :a!<CR>
 
 
 

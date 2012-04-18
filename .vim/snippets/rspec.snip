@@ -1,30 +1,103 @@
-snippet     des
-abbr        describe do
-    describe "${1}" do
-        ${2}
-    end
-
-snippet     con
-abbr        context do
-    context "${1}" do
-        ${2}
-    end
-
-snippet     bef
-abbr        before do
-    before do
-        ${1}
-    end
-
-snippet     it
-abbr        it do
-    it "${1}" do
-        ${2}
-    end
-
 snippet     cla
 abbr        class end
     class ${1:name}
       ${2}
     end
+
+snippet     des
+abbr        describe '' do end
+prev_word   '^'
+    describe '${1}' do
+      ${2}
+    end
+
+snippet     deS
+abbr        describe "" do end
+prev_word   '^'
+    describe "${1}" do
+      ${2}
+    end
+
+snippet     con
+abbr        context '' do end
+prev_word   '^'
+    context '${1}' do
+      ${2}
+    end
+
+snippet     coN
+abbr        context "" do end
+prev_word   '^'
+    context "${1}" do
+      ${2}
+    end
+
+snippet     bef
+abbr        before do end
+prev_word   '^'
+    before do
+        ${1}
+    end
+
+snippet     bef{
+abbr        before { }
+prev_word   '^'
+    before { ${1} }
+
+snippet     af
+abbr        after do end
+prev_word   '^'
+    after do
+        ${1}
+    end
+
+snippet     af{
+abbr        after { }
+prev_word   '^'
+    after { ${1} }
+
+snippet     it
+abbr        it '' do end
+prev_word   '^'
+    it '${1}' do
+        ${2}
+    end
+
+snippet     iT
+abbr        it "" do end
+prev_word   '^'
+    it "${1}" do
+        ${2}
+    end
+
+snippet     let
+abbr        let { }
+prev_word   '^'
+    let(:${1:name}) { ${2} }
+
+snippet     leT
+abbr        let do end
+prev_word   '^'
+    let(:${1:name}) do
+        ${2}
+    end
+
+snippet     sub
+abbr        subject { }
+prev_word   '^'
+    subject { ${1} }
+
+snippet     suB
+abbr        subject do end
+prev_word   '^'
+    subject do
+        ${1}
+    end
+
+snippet     exp
+abbr        expect { }.to
+prev_word   '^'
+    expect { ${1} }.to ${2}
+
+
 
