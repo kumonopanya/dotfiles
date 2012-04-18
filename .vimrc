@@ -224,7 +224,7 @@ NeoBundle 'Shougo/unite.vim.git'
 "--"NeoBundle 'h1mesuke/unite-outline'
 
 "ヘルプを検索するsourceである。
-"="NeoBundle 'tsukkee/unite-help'
+"--"NeoBundle 'tsukkee/unite-help'
 "設定例:
 " Execute help.
 "nnoremap <C-h>  :<C-u>Unite -start-insert help<CR>
@@ -236,8 +236,8 @@ NeoBundle 'Shougo/unite.vim.git'
 
 
 
-"="NeoBundle 'basyura/unite-rails'
-"="NeoBundle 'tsukkee/unite-tag.git'
+"--"NeoBundle 'basyura/unite-rails'
+"--"NeoBundle 'tsukkee/unite-tag.git'
 
 
 
@@ -245,11 +245,10 @@ NeoBundle 'Shougo/unite.vim.git'
 
 " unite.vimとvimprocがインストールされていると非同期でプラグインがアップデートできる。
 " Windows7 64bitでvimshellやvimprocを使うには特別なインストール設定が必要なのでコメントアウト
-"NeoBundle 'Shougo/vimshell.git'
-"NeoBundle 'Shougo/vimproc.git'
+"--"NeoBundle 'Shougo/vimshell.git'
+"--"NeoBundle 'Shougo/vimproc.git'
 
-
-"NeoBundle 'sudo.vim'
+"--"NeoBundle 'sudo.vim'
 
 "vimの既に開いているファイルをsudo.vimで開きなおすケース
 "おそらくこのケースが最も使うケース
@@ -269,7 +268,7 @@ NeoBundle 'Shougo/unite.vim.git'
 
 "--"NeoBundle 'Shougo/vimfiler.git'
 
-" vimfiler "{{{
+" vimfiler
 "nnoremap <silent> <F7> :VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 "let g:vimfiler_as_default_explorer = 1
 "let g:vimfiler_safe_mode_by_default = 0
@@ -293,7 +292,6 @@ NeoBundle 'thinca/vim-quickrun'
 "NeoBundleなどでvim-quickrunはインストール済み。
 "NeoBundle 'Shougo/vimshell.git'
 "NeoBundle 'Shougo/vimproc.git'
-
 
 " 出力先別にショートカットキーを設定する
 " <Leader>w	単発
@@ -653,17 +651,6 @@ NeoBundle 'tpope/vim-surround'
 
 "==========================================================
 
-"surroundの拡張
-"yss- で実行。
-"45 は 「-」の ASCII コード番号です。
-autocmd FileType html let b:surround_45 = "<% \r %>"
-"yssE で実行。
-autocmd FileType html let b:surround_{char2nr("E")} = "<<EOS \r EOS"
-
-
-
-"==========================================================
-
 "プラグインを利用したsurroundの拡張
 NeoBundle 't9md/vim-surround_custom_mapping'
 
@@ -704,8 +691,12 @@ let g:surround_custom_mapping.vim = {
             \'f':  "function! \r endfunction",
             \'z':  "\"{{{ \r \"}}}",
             \ }
-" }}}
-"
+
+"yss- で実行。
+"45 は 「-」の ASCII コード番号です。
+"autocmd FileType html let b:surround_45 = "<% \r %>"
+"yssE で実行。
+"autocmd FileType html let b:surround_{char2nr("E")} = "<<EOS \r EOS"
 
 
 
@@ -761,6 +752,13 @@ NeoBundle 'matchit.zip'
 "==========================================================
 "==========================================================
 "==========================================================
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" javascript.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"NeoBundle 'javascript.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" 文法チェック JavaScript
@@ -826,8 +824,6 @@ NeoBundle 'tpope/vim-cucumber'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" HTML
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 
 NeoBundle 'tpope/vim-haml'
 
@@ -929,7 +925,9 @@ NeoBundle 'kana/vim-smartchr'
 autocmd FileType python inoremap <buffer> <expr> = smartchr#one_of('=', ' = ', ' == ', '=')
 "autocmd FileType python inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ','=', )
 "autocmd FileType eruby,jsp inoremap <buffer> <expr> % smartchr#loop('%=  %>', '% %>', '%- -%>')
-"autocmd FileType javascript inoremap <buffer> <expr> -> smartchr#one_of('function', '->')
+autocmd FileType javascript inoremap <buffer> <expr> -> smartchr#one_of('function', '->')
+
+
 
 "コマンドライン用
 "Vim: smartchr - Insert several candidates with a single key
@@ -989,6 +987,8 @@ NeoBundle 'mitechie/pyflakes-pathogen'
 "QuickFixを利用するのですがこれが邪魔な場合は
 "以下の設定を VIM/ftplugin/python.vim に追加すればいいです:
 "let pyflakes_use_quickfix = 0
+
+NeoBundle 'kevinw/pyflakes-vim.git'
 
 "==========================================================
 
@@ -1298,14 +1298,17 @@ NeoBundle 'css_color.vim'
 
 NeoBundle 'h1mesuke/vim-alignta.git'
 
+"操作方法はuserautoloadディレクトリに置いた。
 
 
+"==========================================================
+
+"old
 "Bundle 'Align.vim'
 "エラーが出る。
 
 "vim-scripts/Align.vim
 "  https://github.com/vim-scripts/Align.vim
-
 "NeoBundle 'vim-scripts/Align.vim.git'
 
 
@@ -1319,12 +1322,15 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" タグを自動挿入
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" タグを自動挿入1
 "HTML の閉じタグを自動挿入する
-"NeoBundle'closetag.vim'
+NeoBundle'closetag.vim'
 
 "閉じタグの欲しいところにカーソルを持っていき、 
-"insertモードで、Ctrl-_を入力します。
+"insertモードで、
+"Ctrl-_
+"を入力します。
+
 "入力個所の後ろに閉じタグがあっても、 
 "気にせず、閉じタグを挿入されてしまいます。
 
@@ -1334,23 +1340,22 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 
 
 "==========================================================
-
+" タグを自動挿入2
 "xmledit : XML、HTML、SGMLドキュメントのタグ編集操作サポートプラグイン
 "http://nanasi.jp/articles/vim/xml-plugin.html
 
-
 "NeoBundle 'xmledit'
 
-"==========================================================
-
-
-
-
-
 
 
 "==========================================================
 
+
+
+
+
+
+"==========================================================
 
 
 
@@ -1369,9 +1374,11 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1383,10 +1390,6 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 
 "" original repos on github
 "NeoBundle 'vim-jp/vimdoc-ja'
-"NeoBundle 'Shougo/unite.vim'
-"NeoBundle 'Shougo/vimshell'
-"NeoBundle 'Shougo/vimproc'
-"NeoBundle 'Shougo/vimfiler'
 "NeoBundle 'corntrace/bufexplorer'
 "NeoBundle 'hrp/EnhancedCommentify'
 
@@ -1396,7 +1399,6 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 "NeoBundle 'msanders/cocoa.vim'
 "NeoBundle 'plasticboy/vim-markdown'
 
-"NeoBundle 'scrooloose/nerdtree'
 "NeoBundle 'thinca/vim-qfreplace'
 "NeoBundle 'thinca/vim-unite-history'
 "NeoBundle 'thinca/vim-openbuf'
@@ -1413,16 +1415,14 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 
 "NeoBundle 'ujihisa/unite-locate'
 "NeoBundle 'ujihisa/unite-gem'
-
 "NeoBundle 'ujihisa/unite-rake'
-"NeoBundle 'ujihisa/unite-colorscheme'
+
 "NeoBundle 'tacroe/unite-mark'
 "NeoBundle 'sgur/unite-qf'
 "NeoBundle 'choplin/unite-vim_hacks'
 "NeoBundle 'koron/chalice'
 "NeoBundle 'tyru/open-browser.vim'
 
-"NeoBundle 'basyura/jslint.vim'
 "NeoBundle 'kana/vim-textobj-user'
 "NeoBundle 'kana/vim-textobj-indent'
 
@@ -1434,19 +1434,27 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 
 
 
-
-
 "" vim-scripts repos
 "NeoBundle 'vim-scripts/JavaDecompiler.vim'
 "NeoBundle 'vim-scripts/SQLUtilities'
 "NeoBundle 'vim-scripts/svn-diff.vim'
 "NeoBundle 'vim-scripts/yanktmp.vim'
-"NeoBundle 'vim-scripts/sudo.vim'
 "NeoBundle 'vim-scripts/perlcritic-compiler-script'
+
 
 
 "==========================================================
 
+"NeoBundle ''
+"NeoBundle ''
+"NeoBundle ''
+"NeoBundle ''
+"NeoBundle ''
+"NeoBundle ''
+"NeoBundle ''
+"NeoBundle ''
+"NeoBundle ''
+"NeoBundle ''
 "NeoBundle ''
 "NeoBundle ''
 "NeoBundle ''
@@ -1630,10 +1638,11 @@ set nowrap
 
 
 ".c, .cpp, .hでタブ幅を4に変更
-au BufNewFile,BufRead *.c    set tabstop=4 shiftwidth=4
-au BufNewFile,BufRead *.cpp  set tabstop=4 shiftwidth=4
-au BufNewFile,BufRead *.h    set tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.c    set tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.cpp  set tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.h    set tabstop=4 shiftwidth=4
 
+"autocmd BufNewFile,BufRead *.js   set filetype=javascript
 
 "ファイルタイプを自動判別してインデントを指定する
 "if has("autocmd")
@@ -1919,8 +1928,6 @@ for maptype in ['n', 'N', '*', '#', 'g*', 'g#', 'G']
   execute 'nmap' maptype maptype . 'zz'
 endfor
 "}}}
-
-
 
 nnoremap <Space> jzz
 nnoremap <S-Space> kzz

@@ -248,6 +248,7 @@ nnoremap [unite]S   :<C-u>Unite output:scriptnames<CR>
 let g:unite_update_time = 2000
 
 
+nnoremap ff :Unite buffer file_rec<CR>
 
 "mru,reg,buf
 noremap :um :<C-u>Unite file_mru -buffer-name=file_mru<CR>
