@@ -119,6 +119,12 @@ NeoBundle 'Shougo/neocomplcache-snippets-complete'
 
 
 
+"他の人のまとめ、Pythonとrubyは結合済み
+"dann/vim-neocon-snippets
+"https://github.com/dann/vim-neocon-snippets
+
+
+
 "==========================================================
 
 "NeoComplCache で InsertMode に入った時に辞書とバッファをキャッシュする - basyura’s blog
@@ -142,7 +148,7 @@ endfunction
 
 "neocomplcache非標準のプラグイン Ruby補完
 "rubyでrequire先を補完する
-"---"NeoBundle 'git://github.com/ujihisa/neco-ruby.git'
+NeoBundle 'git://github.com/ujihisa/neco-ruby.git'
 
 
 
@@ -434,9 +440,6 @@ autocmd BufReadPost *_spec.rb call RSpecQuickrun()
 
 "let g:quickrun_config['python'] = {'command' : 'python', 'exec' : ['%c']}
 
-
-" python quickrun
-
 "Python用テストフレームワークnose (1) :: 幕の内 - CMS - コンテンツマネジメントシステム
 " http://makunouchi.jp/zope3/7396323127
 
@@ -459,13 +462,13 @@ autocmd BufReadPost *_spec.rb call RSpecQuickrun()
 "  \ 'exec': ['%c -v %s'],
 "}
 
-
-
 "autocmd BufWinEnter,BufNewFile test*.py set filetype=python.unit
 "let g:quickrun_config['python.unit'] = {
 "  \ 'command': 'nosetests',
 "  \ 'cmdopt': '-s -vv',
 "}
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" quickrun エラー位置にジャンプ
@@ -598,6 +601,7 @@ cmap <silent> <c-e> <C-u>:NERDTreeToggle<CR>
 
 "NeoBundle 'toritori0318/vim-nerdtree-plugin'
 NeoBundle 'git://github.com/toritori0318/vim-nerdtree-plugin.git'
+
 "* ack_menuitem.vim
 "NERDTreeメニュー（g）からackを実行するプラグインです
 "* quickrun_keymap.vim
@@ -620,9 +624,9 @@ NeoBundle 'git://github.com/toritori0318/vim-nerdtree-plugin.git'
 "vmap <Leader>c <Plug>NERDCommenterToggle
 
 "<Leader>xでコメントをトグル(NERD_commenter.vim)
-map <Leader>x ,c<space>
+"map <Leader>x ,c<space>
 "未対応ファイルタイプのエラーメッセージを表示しない
-let NERDShutUp=1
+"let NERDShutUp=1
 
 "==========================================================
 
@@ -643,10 +647,6 @@ NeoBundle 'tpope/vim-surround'
 
 "vim plugin （プラグイン） surround.vim の使い方メモ : Serendip - Webデザイン・プログラミング
 "  http://www.serendip.ws/archives/997
-
-"==========================================================
-"==========================================================
-"==========================================================
 
 "Vim-users.jp - Hack #227: surround.vim の囲むルールを独自に拡張する
 "  http://vim-users.jp/2011/09/hack227/
@@ -709,8 +709,6 @@ let g:surround_custom_mapping.vim = {
 
 
 
-
-
 "==========================================================
 "==========================================================
 "==========================================================
@@ -764,15 +762,16 @@ NeoBundle 'matchit.zip'
 "==========================================================
 "==========================================================
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" 文法チェック JavaScript
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "flymake rubyのシンタックスチェック、設定はruby.vimに。
 NeoBundle 'errormarker.vim'
 
-
-
-"==========================================================
-
 "文法チェック
 NeoBundle 'JavaScript-syntax'
+
 "インデント
 NeoBundle 'pangloss/vim-javascript'
 
@@ -795,29 +794,25 @@ autocmd FileType javascript call s:javascript_filetype_settings()
 "  http://cside.g.hatena.ne.jp/Cside/20120112/p1
 NeoBundle 'kchmck/vim-coffee-script'
 
-" vim-coffee-script.vim "{{{
 autocmd BufWritePost *.coffee silent CoffeeMake! -cb | cwindow
-"}}}
 
 
 
 "==========================================================
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" ruby rails
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "補完ができる、ハイライトがつく。
 "vim-ruby/vim-ruby · GitHub
 "  https://github.com/vim-ruby/vim-ruby
 NeoBundle 'vim-ruby/vim-ruby'
 
-
 NeoBundle 'tpope/vim-rails'
 "Vim-users.jp - Hack #209: Vim で Ruby on Rails の開発を行なう
 "  http://vim-users.jp/2011/03/hack209/
 "rails.vim
-
-
-
-NeoBundle 'tpope/vim-cucumber'
-NeoBundle 'tpope/vim-haml'
 
 "Rspecファイル実行
 "エラー場所を示してくれる。
@@ -825,9 +820,23 @@ NeoBundle 'tpope/vim-haml'
 "  https://github.com/skwp/vim-rspec
 NeoBundle 'skwp/vim-rspec'
 
+NeoBundle 'tpope/vim-cucumber'
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" HTML
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+NeoBundle 'tpope/vim-haml'
 
 "==========================================================
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" バッファ
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "QuickBuf : 軽量バッファマネージャー — 名無しのvim使い
 "  http://nanasi.jp/articles/vim/qbuf_vim.html
@@ -872,6 +881,11 @@ map <silent> tt :bn<CR>
 "==========================================================
 
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" smartchr.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "Vim-users.jp - Hack #131: Rubyで#{をラクに入力する
 "  http://vim-users.jp/2010/03/hack131/
 "smartchr.vim入れた - 物置き
@@ -890,8 +904,6 @@ NeoBundle 'kana/vim-smartchr'
 "共通
 "inoremap <buffer> <expr> = smartchr#one_of('=', = ', ' == ', )
 "inoremap <buffer> <expr> = smartchr#loop('=', ' = ', ' == ', )
-autocmd FileType python inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ','=', )
-
 
 
 "inoremap <buffer> <expr> = smartchr#loop(' = ', '=', ' => ', ' == ')
@@ -914,35 +926,36 @@ autocmd FileType python inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ','
 
 
 "ファイルタイプ別
+autocmd FileType python inoremap <buffer> <expr> = smartchr#one_of('=', ' = ', ' == ', '=')
+"autocmd FileType python inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ','=', )
 "autocmd FileType eruby,jsp inoremap <buffer> <expr> % smartchr#loop('%=  %>', '% %>', '%- -%>')
-
 "autocmd FileType javascript inoremap <buffer> <expr> -> smartchr#one_of('function', '->')
-
-
 
 "コマンドライン用
 "Vim: smartchr - Insert several candidates with a single key
 "  http://kana.github.com/config/vim/smartchr.html
 
 " {context} is not specified - this is always enabled.
-cnoremap <expr> \  smartchr#loop('~/', '\')
+"cnoremap <expr> \  smartchr#loop('~/', '\')
 
 " This is enabled while user inputs Ex commands, not search
 " patterns, etc.
-cnoremap <expr> \  smartchr#loop('~/', '\', {'ctype': ':'})
+"cnoremap <expr> \  smartchr#loop('~/', '\', {'ctype': ':'})
 
 " This is enabled while user inputs search patterns, not Ex
 " commands, etc.
-cnoremap <expr> (  smartchr#loop('\(', '(', {'ctype': '/?'})
-
-
-
+"cnoremap <expr> (  smartchr#loop('\(', '(', {'ctype': '/?'})
 
 
 
 "==========================================================
 "==========================================================
 "==========================================================
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" python 構文チェック
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "pythonの構文チェック1
 "nvie/vim-flake8 · GitHub
@@ -1037,7 +1050,7 @@ NeoBundle 'sontek/rope-vim'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" インデント タブ Python
+""tag" Python インデント タブ
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "vimでPython用の環境を作ってみる | OKEREKE-RL
@@ -1138,7 +1151,7 @@ let g:yankring_history_file = '.yankring_history'
 
 "記録する履歴の最大数の設定です。
 "デフォルトは30
-let g:yankring_max_history = 30
+let g:yankring_max_history = 10
 
 
 
@@ -1147,12 +1160,9 @@ let g:yankring_max_history = 30
 
 "NeoBundle 'janx/vim-rubytest'
 
-" rubytest.vim "{{{
-let g:rubytest_cmd_spec = "spec %p"
-let g:rubytest_cmd_example = "spec %p -l %c"
-let g:rubytest_in_quickfix = 1
-"}}}
-
+"let g:rubytest_cmd_spec = "spec %p"
+"let g:rubytest_cmd_example = "spec %p -l %c"
+"let g:rubytest_in_quickfix = 1
 
 
 
@@ -1165,12 +1175,7 @@ let g:rubytest_in_quickfix = 1
 "gundo.vimが超便利なのとvimのアンドゥツリーについて | uuu
 "  http://uu59.blog103.fc2.com/blog-entry-7.html
 
-" Gundo "{{{
 "nnoremap <F5> :GundoToggle<CR>
-"}}}
-
-
-
 
 "==========================================================
 
@@ -1183,9 +1188,8 @@ let g:rubytest_in_quickfix = 1
 
 NeoBundle 'ujihisa/shadow.vim'
 
-" shadow "{{{
 "let g:shadow_debug = 1
-"}}}
+
 
 
 
@@ -1210,7 +1214,7 @@ NeoBundle 'ujihisa/shadow.vim'
 "nnoremap <silent> <F5> :TlistToggle<CR>
 "let Tlist_Use_Right_Window = 1
 "let Tlist_WinWidth = 40
-"}}}
+
 
 
 
@@ -1284,6 +1288,8 @@ NeoBundle 'css_color.vim'
 
 "==========================================================
 
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" 新たなる整列プラグイン
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1306,12 +1312,34 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 
 "==========================================================
 
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" タグを自動挿入
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "HTML の閉じタグを自動挿入する
-"closetag.vim
+"NeoBundle'closetag.vim'
+
+"閉じタグの欲しいところにカーソルを持っていき、 
+"insertモードで、Ctrl-_を入力します。
+"入力個所の後ろに閉じタグがあっても、 
+"気にせず、閉じタグを挿入されてしまいます。
+
+":let g:closetag_html_style=1
+"au Filetype html,xml,xsl,ant source $VIMRUNTIME/macros/closetag.vim
 
 
 
+"==========================================================
 
+"xmledit : XML、HTML、SGMLドキュメントのタグ編集操作サポートプラグイン
+"http://nanasi.jp/articles/vim/xml-plugin.html
+
+
+"NeoBundle 'xmledit'
 
 "==========================================================
 
@@ -1334,6 +1362,16 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 
 
 
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
