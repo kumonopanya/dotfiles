@@ -1205,6 +1205,11 @@ alias  gap='git add -p'
 #alias   gp='git push'
 #alias   gl='git pull'
 
+
+alias push='git push -u origin master'
+
+
+
 #masterをアップロード。
 alias  gpo='git push origin'
 alias  gpr='git pull --rebase'
