@@ -779,8 +779,6 @@ function! s:javascript_filetype_settings()
   autocmd CursorMoved  <buffer> call jslint#message()
 endfunction
 autocmd FileType javascript call s:javascript_filetype_settings()
-" JavaScript, ECMAScript
-au BufNewFile,BufRead *.js,*.javascript,*.es,*.jsx	setf javascript
 
 
 "==========================================================
@@ -2329,7 +2327,7 @@ nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 "C-j で esc
 "ESC キーをCtrl+[で代用する。最多利用なのでキーマップした。
 inoremap <C-j> <ESC>:nohlsearch<CR>
-"vnoremap <C-j> <ESC>
+vnoremap <C-j> <ESC>
 "inoremap <C-m> <ESC>
 "vnoremap <C-m> <ESC>
 " 行ごとに挿入モードから編集モードに戻ってしまうのでコメントアウト
