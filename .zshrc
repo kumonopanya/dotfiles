@@ -1001,8 +1001,9 @@ setopt auto_resume
 setopt complete_aliases     # aliased ls needs if file/dir completions work
 
 #Ubuntu でのvimの場所。
-export EDITOR=/usr/bin/vim
-
+#export EDITOR=/usr/share/vim
+#
+#export EDITOR=/usr/bin/vim
 #export EDITOR=/usr/local/bin/vim
 #export EDITOR=/bin/vi
 #EDITOR=vim
@@ -1073,7 +1074,8 @@ alias    cd2='~/Workspace/ruby'
 #######################################################################
 #######################################################################
 
-alias    ccd='cd ~/bootstrap'
+#alias    ccd='cd ~/bootstrap'
+alias    ccd='cd ~/py'
 ccd
 
 
@@ -1136,8 +1138,8 @@ alias  irb='pry'
 #######################################################################
 
 #CREAM
-CREAM=/home/hi/cream
-export CREAM
+#CCREAM=/home/hi/cream
+#Cexport CREAM
 #alias ee='gvim -U NONE -u "\$CREAM/creamrc" "$@"'
 
 #gvim -U NONE -u "\$CREAM/creamrc" "$@"
@@ -1381,16 +1383,33 @@ alias rr="gem list;echo;git --version;echo rspec;rspec -v;echo gem;gem -v;rvm --
 #jenkins
 
 #jenkins起動
+#jenkins.warファイルからJenkinsを起動する場合。
 alias jenkins="java -jar ~/jenkins/jenkins.war"
 
 #jenkins
+export JENKINS_HOME=$HOME/jenkins
 #export JENKINS_HOME=$HOME
-export JENKINS_HOME=$HOME/.jenkins
+#export JENKINS_HOME=$HOME/.jenkins
+
+#デフォルトのホーム
 #export JENKINS_HOME=/var/lib/jenkins
 
 
+#######################################################################
 
+# ubuntu インストール Pythonプロフェッショナルプログラミング
+# sudo apt-get install openjdk-6-jre-headless
+# wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
 
+# sudo vi /etc/apt/sources.list
+# 	deb http://pkg.jenkins-ci.org/debian binary/
+
+# sudo apt-get update
+# sudo apt-get install jenkins
+
+###############
+# インストール後下記URLにアクセス。
+# http://localhost:8080/
 
 #######################################################################
 #######################################################################

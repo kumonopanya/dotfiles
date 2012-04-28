@@ -710,6 +710,14 @@ let g:surround_custom_mapping.vim = {
 
 NeoBundle 'vim-jp/vimdoc-ja.git'
 
+":helptags /home/hi/.vim/bundle/vimdoc-ja/doc
+
+"ヘルプ検索の日本語の優先順位を上げる
+"日本語ヘルプファイルインストール後に
+set helplang=ja
+"set helplang=ja,en
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" vim-fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -985,7 +993,8 @@ NeoBundle 'mitechie/pyflakes-pathogen'
 "以下の設定を VIM/ftplugin/python.vim に追加すればいいです:
 "let pyflakes_use_quickfix = 0
 
-NeoBundle 'kevinw/pyflakes-vim.git'
+"不向き
+"NeoBundle 'kevinw/pyflakes-vim.git'
 
 "==========================================================
 
@@ -1601,10 +1610,8 @@ set nostartofline
 " コマンドラインの高さを2行に
 set cmdheight=2
 
-"ヘルプ検索の日本語の優先順位を上げる
-"日本語ヘルプファイルインストール後に
-set helplang=ja
-"set helplang=ja,en
+
+
 
 " Use visual bell instead of beeping when doing something wrong
 " ビープの代わりにビジュアルベル（画面フラッシュ）を使う

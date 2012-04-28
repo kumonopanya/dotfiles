@@ -1,10 +1,12 @@
-snippet class
-abbr    class
-    class ${1:``Snippet_PythonClassNameFromFilename()``}(${2:data}):
-    ${3}
+snippet     class
+abbr        class
+prev_word   '^'
+	class ${1:name}(${2:object}):
+		"""${3:class documentation}"""
+		${4:pass}
 
-snippet     class2
-abbr        class Class(...): ...
+snippet     classinit
+abbr        class (...): ...
 prev_word   '^'
 	class ${1:name}(${2:object}):
 		"""${3:class documentation}"""
