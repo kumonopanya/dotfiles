@@ -1078,20 +1078,15 @@ NeoBundle 'ujihisa/shadow.vim'
 "Taglist プラグインがヤバい件 - @sugamasao.blog.title 
 "  http://d.hatena.ne.jp/seiunsky/20080503/1209841493
 
-
 "パッケージマネージャから
 "Exuberant Ctagsをインストール
 
 NeoBundle 'rgo/taglist.vim'
 
-
-
 :set tags=tags
 
 "トグル
 nnoremap <silent> <F5> :<C-u>TlistToggle<CR>
-
-
 
 "右に開く。
 "let Tlist_Use_Right_Window = 1
@@ -1104,8 +1099,6 @@ let Tlist_WinWidth = 40
 "  http://d.hatena.ne.jp/guyon/20080409/1207737955
 
 NeoBundle 'Source-Explorer-srcexpl.vim'
-
-
 
 "自動でプレビューを表示する。
 "TODO:うざくなってきたら手動にする。
@@ -1123,19 +1116,8 @@ let g:SrcExpl_UpdateTags    = 1
 let g:SrcExpl_RefreshMapKey = "<Space>"
 "戻る機能のMAP(#ノーマルモードで動作する)
 let g:SrcExpl_GoBackMapKey  = "<C-b>"
-nnoremap <silent> <S-F5> :SrcExplToggle<CR>
-
-
-
-
-
-
-":SrcExplToggle
 
 nnoremap <silent> <S-F5> :<C-u>SrcExplToggle<CR>
-
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" ???
