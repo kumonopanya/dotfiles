@@ -4,7 +4,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "ref.vim の内部構造を大幅に書き換えた - 永遠に未完成
-"http://d.hatena.ne.jp/thinca/20100418/1271537141
+"  http://d.hatena.ne.jp/thinca/20100418/1271537141
 
 "<CR> <C-]>	 K と同様キーワードを辿る
 "<C-o> <C-t>	 履歴を戻る
@@ -39,6 +39,8 @@ nmap <Leader>e :<C-u>Ref alc<Space>
 "ドキュメント上でカーソル上のキーワードを即検索
 nnoremap <space>e :<C-u>call ref#jump('normal', 'alc')<CR>
 vnoremap <space>e :<C-u>call ref#jump('visual', 'alc')<CR>
+
+
 
 "抜ける場合は、ウィンドウ移動キーで抜ける。
 

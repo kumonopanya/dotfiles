@@ -204,8 +204,18 @@ function! s:unite_my_settings()
   imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
 endfunction
 
+"絞込みテキストを入力するごとに表示される候補の更新間隔を制御する。単位はミリ秒
+let g:unite_update_time = 2000
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" [unite]
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "nnoremap [unite] <Nop>
 nnoremap [unite] :<C-u>Unite<Space>
+
 nmap <Leader>f [unite]
 
 nnoremap <C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
@@ -223,7 +233,14 @@ nnoremap [unite]m   :<C-u>Unite mapping -start-insert<CR>
 nnoremap [unite]n   :<C-u>Unite neobundle<CR>
 nnoremap [unite]o   :<C-u>Unite -buffer-name=outline -auto-preview outline<CR>
 nnoremap [unite]p   :<C-u>Unite process -start-insert<CR>
-nnoremap [unite]r   :<C-u>UniteResume<CR>
+
+
+
+"noremap [unite]r   :<C-u>UniteResume<CR>
+noremap [unite]r   :<C-u>Unite ref/ri<CR>
+
+
+
 nnoremap [unite]s   :<C-u>Unite history/search<CR>
 nnoremap [unite]v   :<C-u>Unite output:version -start-insert<CR>
 nnoremap [unite]y   :<C-u>Unite history/yank<CR>
@@ -239,36 +256,52 @@ nnoremap [unite]S   :<C-u>Unite output:scriptnames<CR>
 
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" ファイル、バッファへのショートカット
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"絞込みテキストを入力するごとに表示される候補の更新間隔を制御する。単位はミリ秒
-let g:unite_update_time = 2000
+"オプション
+" -auto-preview		自動でプレビューを開く
+" -immediately		候補が一つしかない場合は即実行
 
 
-nnoremap ff :Unite buffer file_rec<CR>
-
-"mru,reg,buf
-noremap :um :<C-u>Unite file_mru -buffer-name=file_mru<CR>
-noremap :ur :<C-u>Unite register -buffer-name=register<CR>
-noremap :ub :<C-u>Unite buffer -buffer-name=buffer<CR>
-
-"file current_dir
-noremap :ufc :<C-u>Unite file -buffer-name=file<CR>
-noremap :ufcr :<C-u>Unite file_rec -buffer-name=file_rec<CR>
-
-"file file_current_dir
-noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
-noremap :uffr :<C-u>UniteWithBufferDir file_rec -buffer-name=file_rec<CR>
 
 " c-jはescとする
-au FileType unite nnoremap <silent> <buffer> <c-j> <esc><CR>
+au FileType unite nnoremap <silent> <buffer> <c-j> <ESC><CR>
 
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 最近使用したファイル一覧
+noremap <silent> ff      :<C-u>Unite file_mru -auto-preview<CR>
+" 常用セット buffer と最近のfile
+nnoremap <silent> <space>f     :<C-u>Unite buffer file_mru -auto-preview<CR>
+" 全部乗せ
+nnoremap <silent> <space>a     :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file -auto-preview<CR>
+
+"nnoremap ,f :Unite buffer file_rec<CR>
+
+
+" バッファ一覧
+"noremap <silent> <space>f :<C-u>Unite buffer -auto-preview<CR>
+
+" ファイル一覧
+"相対パス
+"noremap <C-???> :<C-u>Unite -buffer-name=file file<CR>
+"絶対パス
+"nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+"noremap <silent> <C-N> :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<CR>
+
+
+" レジスタ一覧
+"nnoremap <silent> <space>ur :<C-u>Unite -buffer-name=register register -auto-preview<CR>
+
+
+
+
 
 
 
@@ -317,37 +350,6 @@ nnoremap <silent> <C-t><C-t> :<C-u>Unite -immediately tab:no-current<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" バッファ一覧
-"<C-P><C-N>はYankRingで使用。
-"-"noremap <silent> <C-P> :<C-u>Unite buffer -auto-preview<CR>
-" ファイル一覧
-"相対パス
-"noremap <C-N> :<C-u>Unite -buffer-name=file file<CR>
-"絶対パス
-"nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-"-"noremap <silent> <C-N> :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<CR>
-" 最近使用したファイル一覧
-noremap <silent> <C-Z> :<C-u>Unite file_mru -auto-preview<CR>
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" 常用セット buffer to saikin no files
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru -auto-preview<CR>
-" 全部乗せ
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file -auto-preview<CR>
-" レジスタ一覧 copipe
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register -auto-preview<CR>
-
-"オプション
-" -auto-preview		自動でプレビューを開く
-" -immediately		候補が一つしかない場合は即実行
-"
-"
-"
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -432,7 +434,7 @@ nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR>
 "rails.vim の gf と :R が便利すぎるので、これの補助ツールとして使う感じ。
 
 "<C-x>はvim上の数値をデクリメント
-nnoremap <C-x> :Unite rails/
+"nnoremap <C-x> :Unite rails/
 
 "unite /app/models				 	 	 :Unite rails/model
 "unite /app/controllers		 	 	 :Unite rails/controller

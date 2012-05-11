@@ -288,16 +288,19 @@ NeoBundle 'savevers.vim'
 
 NeoBundle 'thinca/vim-quickrun'
 
+
+"==========================================================
+
 "vimやruby環境、非同期環境は構築済み。
 "NeoBundleなどでvim-quickrunはインストール済み。
 "NeoBundle 'Shougo/vimshell.git'
 "NeoBundle 'Shougo/vimproc.git'
 
 " 出力先別にショートカットキーを設定する
-" <Leader>w	単発
+" <Leader>w 単発
 " <Leader>q 追加
+" <space><space> 単発
 for [key, com] in items({
-      \   '<space><space>' : '>buffer',
 \   '<Leader>w' : '>buffer',
 \   '<Leader>q' : '>>buffer',
 \   '<C-space>' : '>buffer',
@@ -306,7 +309,6 @@ for [key, com] in items({
   execute 'vnoremap <silent>' key ':QuickRun' com '-mode v<CR>'
 endfor
 
-
 "==========================================================
 
 " コンフィグを全クリア
@@ -314,238 +316,90 @@ let g:quickrun_config = {}
 
 "vimテクニックバイブルp209
 "デフォルト設定
+"vsplit 縦分割
+"into カーソルをもとのバッファに戻す。
 let g:quickrun_config._={
   \'vsplit': '' ,
   \'into': '0' ,
   \}
 
-"if strlen($rvm_bin_path)
-"  let g:quickrun_config['ruby'] = {
-"  \ 'exec': '$rvm_bin_path/ruby %s',
-"  \ 'tempfile': '{tempname()}.rb',
-"  \}
-"endif
-
-"  \ 'command': 'ruby',
-
-
-" 横分割をするようにする
-"let g:quickrun_config['*'] = {'vsplit': ''}
-" 縦分割をするようにする
-"let g:quickrun_config['*'] = {'split': ''}
-" カーソルをもとのバッファに戻す。(無効？？)
-"let g:quickrun_config['*'] = {'into': '0'}
-" vimproc。
-"let g:quickrun_config['*'] = {'runner': 'vimproc'}
+"==========================================================
 
 
 
 "==========================================================
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" quickrun RSpec
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"augroup QrunRSpec
-augroup RSpec
-  autocmd!
-  autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
-augroup END
-
-let rspec_outputter = quickrun#outputter#buffer#new()
 
 
-
-function! rspec_outputter.init(session)
-  call call(quickrun#outputter#buffer#new().init, [a:session], self)
-endfunction
-
-function! rspec_outputter.finish(session)
-
-
-
-" 背景に色をつける。
-  highlight default RSpecGreen   ctermfg=White ctermbg=Green guifg=White guibg=Green
-  highlight default RSpecRed     ctermfg=White ctermbg=Red   guifg=White guibg=Red
-  highlight default RSpecComment ctermfg=White ctermbg=Cyan  guifg=White guibg=Cyan
-  highlight default RSpecNormal  ctermfg=Black ctermbg=White guifg=Black guibg=White
-
-
-  call matchadd("RSpecGreen", "^[\.F]*\.[\.F]*$")
-  call matchadd("RSpecGreen", "^.*, 0 failures$")
-
-  call matchadd("RSpecRed", "F")
-  call matchadd("RSpecRed", "^.*, [1-9]* failures.*$")
-  call matchadd("RSpecRed", "^.*, 1 failure.*$")
-  call matchadd("RSpecRed", "^ *(.*$")
-  call matchadd("RSpecRed", "^ *expected.*$")
-  call matchadd("RSpecRed", "^ *got.*$")
-  call matchadd("RSpecRed", "^ *Failure/Error:.*$")
-  call matchadd("RSpecRed", "^.*(FAILED - [0-9]*)$")
-  call matchadd("RSpecRed", "^rspec .*:.*$")
-
-  call matchadd("RSpecComment", " # .*$")
-
-  call matchadd("RSpecNormal", "^Failures:")
-  call matchadd("RSpecNormal", "^Finished")
-  call matchadd("RSpecNormal", "^Failed")
-
-  call call(quickrun#outputter#buffer#new().finish,  [a:session], self)
-endfunction
-
-call quickrun#register_outputter("rspec_outputter", rspec_outputter)
-
-"quickrunの動作をvimprocに指定する。
-"let g:quickrun_config._ = {'runner' : 'vimproc'}
-
-" bundleを利用する設定。
-let g:quickrun_config['rspec/bundle'] = {
-  \ 'type': 'rspec/bundle',
-  \ 'command': 'rspec',
-  \ 'exec': 'bundle exec %c %s',
-  \ 'outputter': 'rspec_outputter',
-  \}
-
-" 通常で利用する設定。
-let g:quickrun_config['rspec/normal'] = {
-  \ 'type': 'rspec/normal',
-  \ 'command': 'rspec',
-  \ 'exec': '%c %s',
-  \ 'outputter': 'rspec_outputter',
-  \}
-
-
-"※ここで動作を変更する
-"※ここで動作を変更する
-"どの場面で使うか（rubyかrailsか）によってコマンドが変わるので
-"手動でコメントアウトをつけたり外したりして利用している。
-function! RSpecQuickrun()
-" 通常の場合。（rubyなど）
-  let b:quickrun_config = {'type' : 'rspec/normal'}
-" bundle、Gemfileを利用している場合。（railsなど）
-"  let b:quickrun_config = {'type' : 'rspec/bundle'}
-endfunction
-
-autocmd BufReadPost *_spec.rb call RSpecQuickrun()
+"==========================================================
 
 
 
 "==========================================================
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" quickrun python
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"let g:quickrun_config['python'] = {'command' : 'python', 'exec' : ['%c']}
-
-"Python用テストフレームワークnose (1) :: 幕の内 - CMS - コンテンツマネジメントシステム
-" http://makunouchi.jp/zope3/7396323127
-
-"Pythonのeasy_installを使えるようにする
-"python-setuptools
-"nose
-"sudo apt-get install python-setuptools
-"もしくは
-"パッケージマネージャからインストール。
-
-"QuickRun.vim 実行前に定義した関数を実行するプラグインを作った - Heavens hell
-"  http://d.hatena.ne.jp/heavenshell/20120121/1327146447
-
-"Nose を quickrun する - Heavens hell
-"  http://d.hatena.ne.jp/heavenshell/20110227/1298813517
-
-"autocmd BufWinEnter,BufNewFile test*.py set filetype=python.test
-"let g:quickrun_config['python.test'] = {
-"  \ 'command': 'nosetests',
-"  \ 'exec': ['%c -v %s'],
-"}
-
-"autocmd BufWinEnter,BufNewFile test*.py set filetype=python.unit
-"let g:quickrun_config['python.unit'] = {
-"  \ 'command': 'nosetests',
-"  \ 'cmdopt': '-s -vv',
-"}
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" quickrun エラー位置にジャンプ
+""tag" カーソル下のヘルプ
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"  [VIM] [quickrun] [Ruby] Quickrunで即実行してQuickfixで即エラー位置にジャンプする - rohinomiya's posterous
-"  http://rohinomiya.posterous.com/vim-quickrun-ruby-quickrunquickfix
+nnoremap H; :<C-u>help<Space><C-r><C-w><CR>
 
-NeoBundle 'dannyob/quickfixstatus'
-"NeoBundle 'quickfixstatus.vim'
-
-"QuickFix の該当箇所をハイライトする hier.vim plugin - C++でゲームプログラミング
-"  http://d.hatena.ne.jp/osyo-manga/20110501/1304273451
-NeoBundle 'jceb/vim-hier'
-
-" RSpec 対応
-let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
-
-" :QuickRun -outputter my_outputter
-" プロセスの実行中は、buffer に出力し、
-" プロセスが終了したら、quickfix へ出力を行う
-" http://d.hatena.ne.jp/osyo-manga/20110729/1311934261
-" http://d.hatena.ne.jp/osyo-manga/20110921/1316605254
-
-" 既存の outputter をコピーして拡張
-let my_outputter = quickrun#outputter#multi#new()
-let my_outputter.config.targets = ["buffer", "quickfix"]
-
-function! my_outputter.init(session)
-    " quickfix を閉じる
-    :cclose
-    " 元の処理を呼び出す
-    call call(quickrun#outputter#multi#new().init, [a:session], self)
-endfunction
-
-function! my_outputter.finish(session)
-    call call(quickrun#outputter#multi#new().finish, [a:session], self)
-    " 出力バッファの削除
-    bwipeout [quickrun
-    " vim-hier を使用している場合は、ハイライトを更新
-    :HierUpdate
-    " quickfix への出力後に quickfixstatus を有効に
-    :QuickfixStatusEnable
-endfunction
-
-" quickrun に outputter を登録
-call quickrun#register_outputter("my_outputter", my_outputter)
-
-" <leader>r を再定義
-nmap <silent> <leader>r :QuickRun -outputter my_outputter<CR>
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" quickrun その他
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"let g:quickrun_config['coffee'] = {'command' : 'coffee', 'exec' : ['%c -cbp %s']}
-
-
-
-
-"==========================================================
-"==========================================================
-"==========================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" vim-ref
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 NeoBundle 'thinca/vim-ref'
-"NeoBundle 'ref.vim'
+"thinca/vim-ref
+"  https://github.com/thinca/vim-ref
+
+
+"カーソル下のキーワードを引く。
+nnoremap <silent> <Leader>k :Ref<Space>refe<Space><C-r><C-w><CR>
+nnoremap <silent>  <Space>k :Ref<Space>refe<Space><C-r><C-w><CR>
+
+
+"CTRL-W	カーソル下の word
+"""nmap <Space>r :<C-u>Ref refe<Space>
+
+
+"eoBundle 'ref.vim'
 "let g:ref_refe_cmd = '~/rubyrefm/refe-1_9_2'
+""" ref.vim
+"let g:ref_use_vimproc = 0   " vimprocをインストールしてない場合は0を指定
 
 "操作例
 ":Unite ref/perldoc
 ":Unite ref/phpmanual
 
 "==========================================================
+
+"Uniteを使ってriを検索できるvim-ref-riというプラグインを作った - SELECT * FROM life;
+"http://d.hatena.ne.jp/yuku_t/20120429/1335628327
+
+NeoBundle 'taka84u9/vim-ref-ri.git'
+
+"usage
+"vim-ref
+"  :Ref ri Net::HTTP
+
+"Unite.vim
+"  :Unite ref/ri
+
+nnoremap <silent> <Leader>r :Ref<Space>ri<Space><C-r><C-w><CR>
+nnoremap <silent>  <Space>r :Ref<Space>ri<Space><C-r><C-w><CR>
+
+"""unite.vim設定ファイル
+"""nmap <Leader>f [unite]
+"""noremap [unite]r   :<C-u>Unite ref/ri<CR>
+
+
+
+
+
+
+
 "==========================================================
 "==========================================================
 
@@ -1162,7 +1016,9 @@ let g:yankring_max_history = 10
 
 
 
-"==========================================================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" ????
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "NeoBundle 'janx/vim-rubytest'
 
@@ -1181,7 +1037,7 @@ let g:yankring_max_history = 10
 "gundo.vimが超便利なのとvimのアンドゥツリーについて | uuu
 "  http://uu59.blog103.fc2.com/blog-entry-7.html
 
-"nnoremap <F5> :GundoToggle<CR>
+"nnoremap <F   5> :GundoToggle<CR>
 
 "==========================================================
 
@@ -1213,21 +1069,77 @@ NeoBundle 'ujihisa/shadow.vim'
 
 "==========================================================
 
-"ctag が必要
 
-"NeoBundle 'rgo/taglist.vim'
-" taglist.vim "{{{
-"nnoremap <silent> <F5> :TlistToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" taglist.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"Taglist プラグインがヤバい件 - @sugamasao.blog.title 
+"  http://d.hatena.ne.jp/seiunsky/20080503/1209841493
+
+
+"パッケージマネージャから
+"Exuberant Ctagsをインストール
+
+NeoBundle 'rgo/taglist.vim'
+
+
+
+:set tags=tags
+
+"トグル
+nnoremap <silent> <F5> :<C-u>TlistToggle<CR>
+
+
+
+"右に開く。
 "let Tlist_Use_Right_Window = 1
-"let Tlist_WinWidth = 40
-
-
-
-
-
-
+"画面が狭い場合はこれを使う。
+let Tlist_WinWidth = 40
 
 "==========================================================
+
+"ctagsを利用するSource Explorer(srcexpl.vim)がすごく便利 - Guyon Diary
+"  http://d.hatena.ne.jp/guyon/20080409/1207737955
+
+NeoBundle 'Source-Explorer-srcexpl.vim'
+
+
+
+"自動でプレビューを表示する。
+"TODO:うざくなってきたら手動にする。
+"またはソースを追う時だけ自動に変更する。
+let g:SrcExpl_RefreshTime   = 1
+
+"プレビューウインドウの高さ
+let g:SrcExpl_WinHeight     = 9
+
+"tagsは自動で作成する
+let g:SrcExpl_UpdateTags    = 1
+
+"マッピング
+"手動表示のMAP(#スペースに割当てる場合。)
+let g:SrcExpl_RefreshMapKey = "<Space>"
+"戻る機能のMAP(#ノーマルモードで動作する)
+let g:SrcExpl_GoBackMapKey  = "<C-b>"
+nnoremap <silent> <S-F5> :SrcExplToggle<CR>
+
+
+
+
+
+
+":SrcExplToggle
+
+nnoremap <silent> <S-F5> :<C-u>SrcExplToggle<CR>
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" ???
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Vim-users.jp - Hack #226: 複数のキーワードを手軽にハイライトする
 "  http://vim-users.jp/2011/08/hack226/
