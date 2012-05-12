@@ -94,10 +94,10 @@ NeoBundle 'vundle'
 NeoBundle 'Shougo/neobundle.vim'
 
 "Bundle再インストール
-".vimをバックアップ
-".vimを新しく作る。
-"git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"vi
+"bundleをバックアップ
+"bundleを新しく作る。
+"  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"vi起動
 ":BundleInstall
 "vi再起動
 ":NeoBundleInstall
@@ -191,6 +191,17 @@ NeoBundle 'ujihisa/neco-rubymf'
 NeoBundle 'Shougo/unite.vim.git'
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" unite-tag
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"ctags と neocomplcache と unite-tag を使って関数定義箇所を開く - C++でゲームプログラミング
+"  http://d.hatena.ne.jp/osyo-manga/20120205/1328368314
+
+
+"NeoBundle 'tsukkee/unite-tag.git'
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" unite color
@@ -237,8 +248,6 @@ NeoBundle 'Shougo/unite.vim.git'
 
 
 "--"NeoBundle 'basyura/unite-rails'
-"--"NeoBundle 'tsukkee/unite-tag.git'
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1093,6 +1102,13 @@ nnoremap <silent> <F5> :<C-u>TlistToggle<CR>
 "画面が狭い場合はこれを使う。
 let Tlist_WinWidth = 40
 
+
+
+"JavaScript用 taglistはJavaScriptで崩れる（未確認）。
+"  NeoBundle 'taglist-plus.vim'
+
+
+
 "==========================================================
 
 "ctagsを利用するSource Explorer(srcexpl.vim)がすごく便利 - Guyon Diary
@@ -1118,6 +1134,22 @@ let g:SrcExpl_RefreshMapKey = "<Space>"
 let g:SrcExpl_GoBackMapKey  = "<C-b>"
 
 nnoremap <silent> <S-F5> :<C-u>SrcExplToggle<CR>
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" tagbar
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"tagbar/doc/tagbar.txt at master · majutsushi/tagbar · GitHub
+"  https://github.com/majutsushi/tagbar/blob/master/doc/tagbar.txt
+
+
+NeoBundle 'majutsushi/tagbar'
+Bundle 'majutsushi/tagbar'
+nmap <F6> :TagbarToggle<CR>
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" ???
@@ -1153,6 +1185,11 @@ nnoremap <silent> <S-F5> :<C-u>SrcExplToggle<CR>
 
 "Syntastic というシンタックスチェックプラグインが凄そう - Heavens hell
 "  http://d.hatena.ne.jp/heavenshell/20120106/1325866974
+
+"At the time of this writing, syntax checking plugins exist for applescript, c, coffee, cpp, css, cucumber, cuda, docbk, erlang, eruby, fortran, gentoo_metadata, go, haml, haskell, html, javascript, json, less, lua, matlab, perl, php, puppet, python, rst, ruby, sass/scss, sh, tcl, tex, vala, xhtml, xml, xslt, yaml, zpt
+
+
+
 
 "scrooloose/syntastic · GitHub
 "  https://github.com/scrooloose/syntastic
@@ -2116,7 +2153,7 @@ noremap gl gt
 
 "<F6>
 "vim-flake8
-	autocmd FileType python map <buffer> <F6> :call Flake8()<CR>
+	"autocmd FileType python map <buffer> <F6> :call Flake8()<CR>
 
 "<S-F5>
 "<S-F6>

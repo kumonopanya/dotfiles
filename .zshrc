@@ -1074,9 +1074,11 @@ alias    cd2='~/Workspace/ruby'
 #######################################################################
 #######################################################################
 
-#alias    ccd='cd ~/bootstrap'
-#alias    ccd='cd ~/py'
-alias    ccd='cd ~/MetaRuby'
+# alias    ccd='cd ~/bootstrap'
+# alias    ccd='cd ~/py'
+# alias    ccd='cd ~/MetaRuby'
+alias    ccd='cd ~/Rails/myapp'
+
 ccd
 
 
