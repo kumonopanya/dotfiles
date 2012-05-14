@@ -288,6 +288,7 @@ NeoBundle 'Shougo/unite.vim.git'
 ""tag" savevers.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"バックアップ履歴保存
 NeoBundle 'savevers.vim'
 
 
@@ -312,7 +313,7 @@ NeoBundle 'thinca/vim-quickrun'
 for [key, com] in items({
 \   '<Leader>w' : '>buffer',
 \   '<Leader>q' : '>>buffer',
-\   '<C-space>' : '>buffer',
+\   '<space><space>' : '>buffer',
 \ })
   execute 'nnoremap <silent>' key ':QuickRun' com '-mode n<CR>'
   execute 'vnoremap <silent>' key ':QuickRun' com '-mode v<CR>'
@@ -556,10 +557,30 @@ let g:surround_custom_mapping.vim = {
             \ }
 
 "yss- で実行。
+
+"見えない改行記号コードも囲ってしまう。
+"改行コードを囲うと上下に挟まれる。
+"\rを書いておかないと機能しない。
+autocmd FileType eruby let b:surround_{char2nr("-")} = "<% \r %>"
+autocmd FileType eruby let b:surround_{char2nr("%")} = "<%= \r %>"
+"autocmd FileType html  let b:surround_{char2nr("E")} = "<% \r %>"
+"autocmd FileType eruby let b:surround_{char2nr("-")} = "<%  %>"
+
 "45 は 「-」の ASCII コード番号です。
 "autocmd FileType html let b:surround_45 = "<% \r %>"
+"autocmd FileType eruby let b:surround_45 = "<% \r %>"
+
+
+
 "yssE で実行。
 "autocmd FileType html let b:surround_{char2nr("E")} = "<<EOS \r EOS"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" ファイルでシンタックスハイライト・インデントを有効化
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
+
 
 
 
@@ -675,7 +696,9 @@ autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 "  https://github.com/vim-ruby/vim-ruby
 NeoBundle 'vim-ruby/vim-ruby'
 
-NeoBundle 'tpope/vim-rails'
+"エラーが出た。neocomplcacheと被っている？
+"""""NeoBundle 'tpope/vim-rails'
+
 "Vim-users.jp - Hack #209: Vim で Ruby on Rails の開発を行なう
 "  http://vim-users.jp/2011/03/hack209/
 "rails.vim
@@ -1092,7 +1115,7 @@ NeoBundle 'ujihisa/shadow.vim'
 
 NeoBundle 'rgo/taglist.vim'
 
-:set tags=tags
+
 
 "トグル
 nnoremap <silent> <F5> :<C-u>TlistToggle<CR>
@@ -1106,6 +1129,9 @@ let Tlist_WinWidth = 40
 
 "JavaScript用 taglistはJavaScriptで崩れる（未確認）。
 "  NeoBundle 'taglist-plus.vim'
+
+
+"==========================================================
 
 
 
@@ -1144,12 +1170,28 @@ nnoremap <silent> <S-F5> :<C-u>SrcExplToggle<CR>
 "tagbar/doc/tagbar.txt at master · majutsushi/tagbar · GitHub
 "  https://github.com/majutsushi/tagbar/blob/master/doc/tagbar.txt
 
+"Home · majutsushi/tagbar Wiki
+"Support for additional filetypes
+"  https://github.com/majutsushi/tagbar/wiki
+
 
 NeoBundle 'majutsushi/tagbar'
 Bundle 'majutsushi/tagbar'
 nmap <F6> :TagbarToggle<CR>
 
 
+"Ctags-like tag generator for CoffeeScript
+"lukaszkorecki/CoffeeTags
+"  https://github.com/lukaszkorecki/CoffeeTags
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" ctags Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+:set tags=tags
+":set tags+=./tags,../tags,../../tags
+":set tags+=~/tags/cpp.tags
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" ???
@@ -1193,16 +1235,16 @@ nmap <F6> :TagbarToggle<CR>
 
 "scrooloose/syntastic · GitHub
 "  https://github.com/scrooloose/syntastic
-NeoBundle 'scrooloose/syntastic.git'
+"""""NeoBundle 'scrooloose/syntastic.git'
 "syntastic/doc/syntastic.txt at master · scrooloose/syntastic · GitHub
 "  https://github.com/scrooloose/syntastic/blob/master/doc/syntastic.txt
 
 
 "Python の場合は PyFlakes でチェックして欲しくて、Syntastic ではチェックして欲しくない。
 
-let g:syntastic_mode_map = { 'mode': 'active',
-  \ 'active_filetypes': ['html', 'perl'],
-  \ 'passive_filetypes': ['php'] }
+"let g:syntastic_mode_map = { 'mode': 'active',
+"  \ 'active_filetypes': ['html', 'perl'],
+"  \ 'passive_filetypes': ['php'] }
 
 "active_filetypes
 "自動でチェックして欲しいファイルタイプ
@@ -1342,7 +1384,6 @@ NeoBundle'closetag.vim'
 "NeoBundle 'tpope/vim-cucumber'
 "NeoBundle 'tpope/vim-endwise'
 "NeoBundle 'tpope/vim-haml'
-"NeoBundle 'tpope/vim-rails'
 
 "NeoBundle 'tpope/vim-unimpaired'
 "NeoBundle 'tpope/vim-abolish'

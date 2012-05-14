@@ -1077,7 +1077,7 @@ alias    cd2='~/Workspace/ruby'
 # alias    ccd='cd ~/bootstrap'
 # alias    ccd='cd ~/py'
 # alias    ccd='cd ~/MetaRuby'
-alias    ccd='cd ~/Rails/myapp'
+alias    ccd='cd ~/Rails/blog'
 
 ccd
 
@@ -1318,7 +1318,8 @@ alias sufe='sudo find / -print | grep'
 # rvm use 1.9.3@rails3 --default
 # rvm use 1.9.3@global --default
 # rvm use 1.8.7@RSpec --default
-rvm use 1.9.3@RSpec --default
+# rvm use 1.9.3@RSpec --default
+rvm use 1.9.2@rails --default
 
 
 
@@ -1354,6 +1355,12 @@ alias rr="gem list;echo;git --version;echo rspec;rspec -v;echo gem;gem -v;rvm --
 # rvm gemset create RSpec
 # rvm gemset use RSpec
 # rvm use 1.9.3@RSpec --default
+
+# rvm list known
+# rvm install 1.9.2
+# rvm use 1.9.2
+# rvm gemset create rails
+# rvm use 1.9.2@rails --default
 
 # rvm use 1.8.7
 # rvm gemset create RSpec

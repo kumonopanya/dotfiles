@@ -7,5 +7,4 @@
 :backtrace: false
 :update_sources: true
 :bulk_threshold: 1000
-gem: --no-rdoc
 

@@ -21,12 +21,12 @@ setl expandtab
 "rrormarker.vim を使って flymake っぽくするやつを試してみた - ◆F99a.q8oVEの日記
 "  http://d.hatena.ne.jp/f99aq/20080814/1218783740
 
-
+"rubyファイルだけじゃなくHTMLも判定してしまっている。
 """ for error marker
-setlocal makeprg=ruby\ -cdw\ %
-setlocal errorformat=%f:%l:%m
+"setlocal makeprg=ruby\ -cdw\ %
+"setlocal errorformat=%f:%l:%m
 
-au BufWritePost <buffer> silent make
+"au BufWritePost <buffer> silent make
 
 
 
