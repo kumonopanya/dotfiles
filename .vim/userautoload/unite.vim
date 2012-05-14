@@ -215,7 +215,6 @@ let g:unite_update_time = 2000
 
 "nnoremap [unite] <Nop>
 nnoremap [unite] :<C-u>Unite<Space>
-
 nmap <Leader>f [unite]
 
 nnoremap <C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
@@ -255,7 +254,6 @@ nnoremap [unite]S   :<C-u>Unite output:scriptnames<CR>
 
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" ファイル、バッファへのショートカット
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -263,8 +261,6 @@ nnoremap [unite]S   :<C-u>Unite output:scriptnames<CR>
 "オプション
 " -auto-preview		自動でプレビューを開く
 " -immediately		候補が一つしかない場合は即実行
-
-
 
 " c-jはescとする
 au FileType unite nnoremap <silent> <buffer> <c-j> <ESC><CR>
@@ -276,14 +272,13 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " 最近使用したファイル一覧
-noremap <silent> ff      :<C-u>Unite file_mru -auto-preview<CR>
+noremap <silent>  ff           :<C-u>Unite file_mru -auto-preview<CR>
 " 常用セット buffer と最近のfile
 nnoremap <silent> <space>f     :<C-u>Unite buffer file_mru -auto-preview<CR>
 " 全部乗せ
 nnoremap <silent> <space>a     :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file -auto-preview<CR>
 
 "nnoremap ,f :Unite buffer file_rec<CR>
-
 
 " バッファ一覧
 "noremap <silent> <space>f :<C-u>Unite buffer -auto-preview<CR>
