@@ -4,6 +4,7 @@
 " 履歴
 "2012年1月7日（.vimrcを整理）
 "2012年4月17日（githubで管理)
+"2012年5月16日（keymapping.vimにキーマッピング設定を記入）
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -23,12 +24,30 @@
 " （ここにユーザーが作ったファイルが置かれる。）
 "cd $HOME
 
+
+
 "==========================================================
 
-"英語キーボードで必須、ライフチェンジ。
-" ;でコマンド入力( ;と:を入れ替)
-noremap ; :
-"noremap : ;
+"RubyのOmni補完 未完成
+"railsの補完ができない。
+
+"systemにgemをインストール
+"sudo apt-get install rubygems
+
+"有効になっている拡張機能をチェックする方法
+":versionコマンド
+"rubyinterpは"+ruby"で有効
+
+"vim-rubyのインストール
+"sudo gem install vim-ruby
+"vim-ruby-install.rb
+
+
+"==========================================================
+
+
+
+
 
 "==========================================================
 
@@ -68,6 +87,7 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
   call neobundle#rc(expand('~/.vim/bundle/'))
 endif
+
 
 filetype plugin on
 filetype indent on
@@ -120,7 +140,7 @@ NeoBundle 'Shougo/neocomplcache-snippets-complete'
 
 
 
-"他の人のまとめ、Pythonとrubyは結合済み
+"他の人のスニペットのまとめ、Pythonとrubyは結合済み
 "dann/vim-neocon-snippets
 "https://github.com/dann/vim-neocon-snippets
 
@@ -128,22 +148,27 @@ NeoBundle 'Shougo/neocomplcache-snippets-complete'
 
 "==========================================================
 
-"NeoComplCache で InsertMode に入った時に辞書とバッファをキャッシュする - basyura’s blog
-"  http://d.hatena.ne.jp/basyura/20120318/p1
 
-autocmd InsertEnter * call s:neco_pre_cache()
-function! s:neco_pre_cache()
-  if exists('b:neco_pre_cache')
-    return
-  endif
-  let b:neco_pre_cache = 1
-  if bufname('%') =~ g:neocomplcache_lock_buffer_name_pattern
-    return
-  endif
-  :NeoComplCacheCachingBuffer
-  :NeoComplCacheCachingDictionary
-endfunction
+"補完ができる、ハイライトがつく。
+"vim-ruby/vim-ruby · GitHub
+"  https://github.com/vim-ruby/vim-ruby
+NeoBundle 'vim-ruby/vim-ruby'
 
+"tpope/vim-rails
+"  https://github.com/tpope/vim-rails
+"エラーが出た。neocomplcacheと被っている？
+"Bundle 'tpope/vim-rails'
+"NeoBundle 'tpope/vim-rails'
+
+"Vim-users.jp - Hack #209: Vim で Ruby on Rails の開発を行なう
+"  http://vim-users.jp/2011/03/hack209/
+"rails.vim
+
+"Vimを使ったRuby On Rails開発環境の構築 - ナレッジエース
+"  http://blog.blueblack.net/item_133
+
+"Rails関連ファイルで文字コードをUFT-8に設定
+"au User Rails* set fenc=utf-8
 
 "==========================================================
 
@@ -166,23 +191,35 @@ NeoBundle 'git://github.com/ujihisa/neco-ruby.git'
 "gem install methodfinder
 "gem install methodfinder
 "gem install methodfinder
+
 NeoBundle 'ujihisa/neco-rubymf'
 
+"中間補完メソッド
+"使い方
+"1.¶ #=> 2
 
 
 "==========================================================
+
+
+"NeoComplCache で InsertMode に入った時に辞書とバッファをキャッシュする - basyura’s blog
+"  http://d.hatena.ne.jp/basyura/20120318/p1
+
+autocmd InsertEnter * call s:neco_pre_cache()
+function! s:neco_pre_cache()
+  if exists('b:neco_pre_cache')
+    return
+  endif
+  let b:neco_pre_cache = 1
+  if bufname('%') =~ g:neocomplcache_lock_buffer_name_pattern
+    return
+  endif
+  :NeoComplCacheCachingBuffer
+  :NeoComplCacheCachingDictionary
+endfunction
+
+
 "==========================================================
-"==========================================================
-
-
-
-
-
-
-
-
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" unite
@@ -191,7 +228,6 @@ NeoBundle 'ujihisa/neco-rubymf'
 ""ファイラー unite
 NeoBundle 'Shougo/unite.vim.git'
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" unite-tag
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -199,10 +235,7 @@ NeoBundle 'Shougo/unite.vim.git'
 "ctags と neocomplcache と unite-tag を使って関数定義箇所を開く - C++でゲームプログラミング
 "  http://d.hatena.ne.jp/osyo-manga/20120205/1328368314
 
-
 "NeoBundle 'tsukkee/unite-tag.git'
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" unite color
@@ -217,7 +250,6 @@ NeoBundle 'Shougo/unite.vim.git'
 "g:unite_enable_start_insert: Uniteを挿入モードで開始します
 "g:unite_enable_split_vertically: Uniteを縦分割で開始します
 "ifの行: unite.vimがインストールされているときのみ以下のキーマッピングを行う
-"nnoremapの行: acで:Unite colorscheme fontを実行するようにします。
 "このように、:Uniteコマンドには複数のsourceを指定することができます
 
 "--"let g:unite_enable_split_vertically = 1
@@ -243,38 +275,25 @@ NeoBundle 'Shougo/unite.vim.git'
 " Execute help by cursor keyword.
 "nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR>
 
-
-
-
-
-
 "--"NeoBundle 'basyura/unite-rails'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" vimproc vimshell
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " unite.vimとvimprocがインストールされていると非同期でプラグインがアップデートできる。
 " Windows7 64bitでvimshellやvimprocを使うには特別なインストール設定が必要なのでコメントアウト
-"--"NeoBundle 'Shougo/vimshell.git'
-"--"NeoBundle 'Shougo/vimproc.git'
+"NeoBundle 'Shougo/vimshell.git'
+"NeoBundle 'Shougo/vimproc.git'
 
 "--"NeoBundle 'sudo.vim'
 
-"vimの既に開いているファイルをsudo.vimで開きなおすケース
-"おそらくこのケースが最も使うケース
-"既に開いているファイルを、特権ユーザで開きなおします
-"注意点としては、既に保存されている(ファイルが存在する)のが条件です
-"
-":e sudo:%
-"
-"「%」が実行時に現在開いているファイルパスに置き換えられます
-"
-
-
-
-"==========================================================
-"==========================================================
-"==========================================================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" vimfiler
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "--"NeoBundle 'Shougo/vimfiler.git'
 
@@ -283,8 +302,6 @@ NeoBundle 'Shougo/unite.vim.git'
 "let g:vimfiler_as_default_explorer = 1
 "let g:vimfiler_safe_mode_by_default = 0
 
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" savevers.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -292,33 +309,11 @@ NeoBundle 'Shougo/unite.vim.git'
 "バックアップ履歴保存
 NeoBundle 'savevers.vim'
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" quickrun
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 NeoBundle 'thinca/vim-quickrun'
-
-
-"==========================================================
-
-"vimやruby環境、非同期環境は構築済み。
-"NeoBundleなどでvim-quickrunはインストール済み。
-"NeoBundle 'Shougo/vimshell.git'
-"NeoBundle 'Shougo/vimproc.git'
-
-" 出力先別にショートカットキーを設定する
-" <Leader>w 単発
-" <Leader>q 追加
-" <space><space> 単発
-for [key, com] in items({
-\   '<Leader>w' : '>buffer',
-\   '<Leader>q' : '>>buffer',
-\   '<space><space>' : '>buffer',
-\ })
-  execute 'nnoremap <silent>' key ':QuickRun' com '-mode n<CR>'
-  execute 'vnoremap <silent>' key ':QuickRun' com '-mode v<CR>'
-endfor
 
 "==========================================================
 
@@ -336,27 +331,6 @@ let g:quickrun_config._={
 
 "==========================================================
 
-
-
-"==========================================================
-
-
-
-"==========================================================
-
-
-
-"==========================================================
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" カーソル下のヘルプ
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nnoremap H; :<C-u>help<Space><C-r><C-w><CR>
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" vim-ref
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -365,19 +339,9 @@ NeoBundle 'thinca/vim-ref'
 "thinca/vim-ref
 "  https://github.com/thinca/vim-ref
 
+"==========================================================
 
-"カーソル下のキーワードを引く。
-nnoremap <silent> <Leader>k :Ref<Space>refe<Space><C-r><C-w><CR>
-nnoremap <silent>  <Space>k :Ref<Space>refe<Space><C-r><C-w><CR>
-
-
-"CTRL-W	カーソル下の word
-"""nmap <Space>r :<C-u>Ref refe<Space>
-
-
-"eoBundle 'ref.vim'
 "let g:ref_refe_cmd = '~/rubyrefm/refe-1_9_2'
-""" ref.vim
 "let g:ref_use_vimproc = 0   " vimprocをインストールしてない場合は0を指定
 
 "操作例
@@ -391,46 +355,48 @@ nnoremap <silent>  <Space>k :Ref<Space>refe<Space><C-r><C-w><CR>
 
 NeoBundle 'taka84u9/vim-ref-ri.git'
 
-"usage
+"操作例
 "vim-ref
 "  :Ref ri Net::HTTP
 
 "Unite.vim
 "  :Unite ref/ri
 
-nnoremap <silent> <Leader>r :Ref<Space>ri<Space><C-r><C-w><CR>
-nnoremap <silent>  <Space>r :Ref<Space>ri<Space><C-r><C-w><CR>
-
 """unite.vim設定ファイル
 """nmap <Leader>f [unite]
 """noremap [unite]r   :<C-u>Unite ref/ri<CR>
 
-
-
-
-
-
-
 "==========================================================
-"==========================================================
+
+"ref.vim に webdict と言うソースを追加した - 永遠に未完成
+"http://d.hatena.ne.jp/thinca/20120512/1336761779#c
+
+let g:ref_source_webdict_sites = {
+\   'wiktionary': {
+\     'url': 'http://ja.wiktionary.org/wiki/%s',
+\     'keyword_encoding': 'utf-8',
+\     'cache': 1,
+\   },
+\   'wikipedia:ja':{
+\     'url': 'http://ja.wikipedia.org/wiki/%s',
+\     'keyword_encoding': 'utf-8',
+\     'cache': 1,
+\    },
+\ }
+" 出力に対するフィルタ。最初の数行を削除している。
+function! g:ref_source_webdict_sites.wiktionary.filter(output)
+  return join(split(a:output, "\n")[18 :], "\n")
+endfunction
+
+let g:ref_source_webdict_sites.default = 'wikipedia:ja'
+
+"操作例
+""":Ref webdict wiktionary 検索キーワード
+""":Ref webdict 検索キーワード
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" NERDTree
+""tag" NERDTreeT
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"find + grep
-
-NeoBundle 'ack.vim'
-
-"# 基本的な使い方
-""":Ack [options] {pattern} [{directory}]
-
-"# hogeという文字を検索するときは
-":Ack hoge
-
-
-
-"==========================================================
 
 "NERDTree上からディレクトリ全体をfind + grep
 "とある vim の機能拡張（プラグイン）-- NERDTree | とある港人の記憶装置
@@ -439,7 +405,6 @@ NeoBundle 'ack.vim'
 "scrooloose/nerdtree · GitHub
 "  https://github.com/scrooloose/nerdtree
 NeoBundle 'scrooloose/nerdtree.git'
-"NeoBundle 'The-NERD-tree'
 
 " map <silent> <c-e>   :NERDTreeToggle<CR>
 " lmap <silent> <c-e>  :NERDTreeToggle<CR>
@@ -475,6 +440,17 @@ NeoBundle 'git://github.com/toritori0318/vim-nerdtree-plugin.git'
 "NERDTreeのキーマップ（sh）から指定したディレクトリでターミナル（iTerm2）を開くプラグインです
 "* callfinder_keymap.vim
 "NERDTreeのキーマップ（fd）から指定したファイル／ディレクトリでFinderを開くプラグインです
+
+"==========================================================
+
+"find + grep
+NeoBundle 'ack.vim'
+
+"# 基本的な使い方
+""":Ack [options] {pattern} [{directory}]
+
+"# hogeという文字を検索するときは
+":Ack hoge
 
 "==========================================================
 
@@ -519,62 +495,6 @@ NeoBundle 'tpope/vim-surround'
 "プラグインを利用したsurroundの拡張
 NeoBundle 't9md/vim-surround_custom_mapping'
 
-" vim-surround_custom_mapping {{{
-let g:surround_custom_mapping = {}
-let g:surround_custom_mapping._ = {
-            \ 'p':  "<pre> \r </pre>",
-            \ 'w':  "%w(\r)",
-            \ 'j':  "$('\r')",
-            \ 'J':  "$j('\r')",
-            \ }
-let g:surround_custom_mapping.help = {
-            \ 'p':  "> \r <",
-            \ }
-let g:surround_custom_mapping.ruby = {
-            \ '-':  "<% \r %>",
-            \ '=':  "<%= \r %>",
-            \ '9':  "(\r)",
-            \ '5':  "%(\r)",
-            \ '%':  "%(\r)",
-            \ 'w':  "%w(\r)",
-            \ '#':  "#{\r}",
-            \ '3':  "#{\r}",
-            \ 'e':  "begin \r end",
-            \ 'E':  "<<EOS \r EOS",
-            \ 'i':  "if \1if\1 \r end",
-            \ 'u':  "unless \1unless\1 \r end",
-            \ 'c':  "class \1class\1 \r end",
-            \ 'm':  "module \1module\1 \r end",
-            \ 'd':  "def \1def\1\2args\r..*\r(&)\2 \r end",
-            \ 'p':  "\1method\1 do \2args\r..*\r|&| \2\r end",
-            \ 'P':  "\1method\1 {\2args\r..*\r|&|\2 \r }",
-            \ }
-let g:surround_custom_mapping.javascript = {
-            \ 'f':  "function(){ \r }",
-            \ }
-let g:surround_custom_mapping.vim = {
-            \'f':  "function! \r endfunction",
-            \'z':  "\"{{{ \r \"}}}",
-            \ }
-
-"yss- で実行。
-
-"見えない改行記号コードも囲ってしまう。
-"改行コードを囲うと上下に挟まれる。
-"\rを書いておかないと機能しない。
-autocmd FileType eruby let b:surround_{char2nr("-")} = "<% \r %>"
-autocmd FileType eruby let b:surround_{char2nr("%")} = "<%= \r %>"
-"autocmd FileType html  let b:surround_{char2nr("E")} = "<% \r %>"
-"autocmd FileType eruby let b:surround_{char2nr("-")} = "<%  %>"
-
-"45 は 「-」の ASCII コード番号です。
-"autocmd FileType html let b:surround_45 = "<% \r %>"
-"autocmd FileType eruby let b:surround_45 = "<% \r %>"
-
-
-
-"yssE で実行。
-"autocmd FileType html let b:surround_{char2nr("E")} = "<<EOS \r EOS"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" ファイルでシンタックスハイライト・インデントを有効化
@@ -689,20 +609,8 @@ autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 "==========================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" ruby rails
+""tag" Rspecテスト
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"補完ができる、ハイライトがつく。
-"vim-ruby/vim-ruby · GitHub
-"  https://github.com/vim-ruby/vim-ruby
-NeoBundle 'vim-ruby/vim-ruby'
-
-"エラーが出た。neocomplcacheと被っている？
-"""""NeoBundle 'tpope/vim-rails'
-
-"Vim-users.jp - Hack #209: Vim で Ruby on Rails の開発を行なう
-"  http://vim-users.jp/2011/03/hack209/
-"rails.vim
 
 "Rspecファイル実行
 "エラー場所を示してくれる。
@@ -729,7 +637,7 @@ NeoBundle 'tpope/vim-haml'
 "QuickBuf : 軽量バッファマネージャー — 名無しのvim使い
 "  http://nanasi.jp/articles/vim/qbuf_vim.html
 
-NeoBundle 'QuickBuf'
+"NeoBundle 'QuickBuf'
 
 " j	カーソルを下に移動する
 " k	カーソルを上に移動する
@@ -740,21 +648,16 @@ NeoBundle 'QuickBuf'
 " l	押すたびに一覧を「buflisted」「nobuflisted」のリストに切り替える
 " <ESC>	バッファ一覧を閉じる
 "
-"
 "QuickBuller.vim
 ":let g:qb_hotkey = "<F6>"
-:let g:qb_hotkey = "''"
-
-"tab <S-F5> 一つ前のバッファへ
-"tab <S-F6> 次のバッファへ
-"map <silent> <Space>f <C-u>:bp<CR>
-"map <silent> <Space>d <C-u>:bn<CR>
-"map <silent> fd :bp<CR>
-"map <silent> df :bn<CR>
-"map <silent> fd :bp<CR>
-map <silent> tt :bn<CR>
+":let g:qb_hotkey = "''"
 
 "==========================================================
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" コメント
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "NeoBundle 'tomtom/tcomment_vim.git'
 
@@ -779,69 +682,14 @@ map <silent> tt :bn<CR>
 "smartchr.vim入れた - 物置き
 "  http://d.hatena.ne.jp/ampmmn/20080925/1222338972
 
-""""Ruby用の設定をこちらに設定を書いた。
+"Ruby用の設定をこちらに設定を書いた。
 "~/.vim/ftplugin/ruby/ujihisa.vim
 
 NeoBundle 'kana/vim-smartchr'
-"NeoBundle 'smartchr'
-
-
-"#one_of 一回だけ
-"#loop   ループさせる
-
-"共通
-"inoremap <buffer> <expr> = smartchr#one_of('=', = ', ' == ', )
-"inoremap <buffer> <expr> = smartchr#loop('=', ' = ', ' == ', )
-
-
-"inoremap <buffer> <expr> = smartchr#loop(' = ', '=', ' => ', ' == ')
-"inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
-"inoremap <buffer> <expr> = smartchr#one_of(' = ', ' => ', ' == ', '=')
-
-"inoremap <buffer> <expr> += smartchr#loop('+= ')
-"inoremap <buffer> <expr> -= smartchr#loop('-= ')
-"inoremap <buffer> <expr> .= smartchr#loop('.= ')
-"inoremap <buffer> <expr> , smartchr#loop(', ', ',')
-
-"inoremap <buffer> <expr> { smartchr#loop('{', '{{{')
-"inoremap <buffer> <expr> } smartchr#loop('}', '}}}')
-
-"inoremap <buffer> <expr> <S-=> smartchr#loop(' + ', '+')
-"inoremap <buffer> <expr> - smartchr#loop('-', ' - ')
-"inoremap <buffer> <expr> , smartchr#loop(', ', ',')
-"inoremap <buffer> <expr> . smartchr#loop('.', '<%=  %>', '<%  %>')
-
-
-
-"ファイルタイプ別
-autocmd FileType python inoremap <buffer> <expr> = smartchr#one_of('=', ' = ', ' == ', '=')
-"autocmd FileType python inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ','=', )
-"autocmd FileType eruby,jsp inoremap <buffer> <expr> % smartchr#loop('%=  %>', '% %>', '%- -%>')
-autocmd FileType javascript inoremap <buffer> <expr> -> smartchr#one_of('function', '->')
-
-
-
-"コマンドライン用
-"Vim: smartchr - Insert several candidates with a single key
-"  http://kana.github.com/config/vim/smartchr.html
-
-" {context} is not specified - this is always enabled.
-"cnoremap <expr> \  smartchr#loop('~/', '\')
-
-" This is enabled while user inputs Ex commands, not search
-" patterns, etc.
-"cnoremap <expr> \  smartchr#loop('~/', '\', {'ctype': ':'})
-
-" This is enabled while user inputs search patterns, not Ex
-" commands, etc.
-"cnoremap <expr> (  smartchr#loop('\(', '(', {'ctype': '/?'})
-
-
 
 "==========================================================
 "==========================================================
 "==========================================================
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" python 構文チェック
@@ -1003,17 +851,6 @@ let g:indent_guides_space_guides = 1
 "Default: 1. Values: between 1 and g:|indent_guides_indent_levels|.
 let g:indent_guides_start_level = 2
 
-"nmap <silent> <space>t :IndentGuidesToggle<CR>
-"nmap <silent> tt :IndentGuidesToggle<CR>
-	nmap <silent> gi      :IndentGuidesToggle<CR>
-
-"	map <silent> tt   :IndentGuidesToggle<CR>
-"	lmap <silent> tt  :IndentGuidesToggle<CR>
-"	nmap <silent> tt      :IndentGuidesToggle<CR>
-"	vmap <silent> tt <Esc>:IndentGuidesToggle<CR>
-"	omap <silent> tt      :IndentGuidesToggle<CR>
-"	imap <silent> tt <Esc>:IndentGuidesToggle<CR>
-"	cmap <silent> tt <C-u>:IndentGuidesToggle<CR>
 
 
 "==========================================================
@@ -1024,7 +861,6 @@ let g:indent_guides_start_level = 2
 ""tag" yankring
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"Uniteで似たような機能がある。
 NeoBundle 'chrismetcalf/vim-yankring.git'
 "vim-yankring/doc/yankring.txt at master · chrismetcalf/vim-yankring · GitHub
 "  https://github.com/chrismetcalf/vim-yankring/blob/master/doc/yankring.txt
@@ -1044,7 +880,8 @@ let g:yankring_history_file = '.yankring_history'
 
 "記録する履歴の最大数の設定です。
 "デフォルトは30
-let g:yankring_max_history = 10
+"人間の短期記憶力は平均7なので、
+let g:yankring_max_history = 7
 
 
 
@@ -1064,15 +901,24 @@ let g:yankring_max_history = 10
 
 "==========================================================
 
-"gundo 詳細なundo
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" gundo 詳細なundo
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "NeoBundle 'sjl/gundo.vim'
 
 "gundo.vimが超便利なのとvimのアンドゥツリーについて | uuu
 "  http://uu59.blog103.fc2.com/blog-entry-7.html
 
-"nnoremap <F   5> :GundoToggle<CR>
+"nnoremap <F5> :GundoToggle<CR>
 
 "==========================================================
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" shadow.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "CoffeeScriptを保存すると勝手にjsを作ってほしい
 "Markdownを保存すると勝手にmarkdownをつくってほしい
@@ -1080,8 +926,7 @@ let g:yankring_max_history = 10
 
 "ujihisa/shadow.vim · GitHub
 "  https://github.com/ujihisa/shadow.vim
-
-NeoBundle 'ujihisa/shadow.vim'
+"NeoBundle 'ujihisa/shadow.vim'
 
 "let g:shadow_debug = 1
 
@@ -1090,13 +935,15 @@ NeoBundle 'ujihisa/shadow.vim'
 
 "==========================================================
 
-"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" vim-powerline ステータスライン
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """""NeoBundle 'Lokaltog/vim-powerline'
 
-" vim-powerline {{{
+" vim-powerline
 "let g:Powerline_symbols = 'fancy'
 "let g:Powerline_symbols = 'unicode'
-" }}}
 
 "ファイル名、ファイル系文字コード 行番号
 
@@ -1116,25 +963,15 @@ NeoBundle 'ujihisa/shadow.vim'
 
 NeoBundle 'rgo/taglist.vim'
 
-
-
-"トグル
-nnoremap <silent> <F5> :<C-u>TlistToggle<CR>
-
 "右に開く。
 "let Tlist_Use_Right_Window = 1
 "画面が狭い場合はこれを使う。
 let Tlist_WinWidth = 40
 
-
+"==========================================================
 
 "JavaScript用 taglistはJavaScriptで崩れる（未確認）。
 "  NeoBundle 'taglist-plus.vim'
-
-
-"==========================================================
-
-
 
 "==========================================================
 
@@ -1156,11 +993,9 @@ let g:SrcExpl_UpdateTags    = 1
 
 "マッピング
 "手動表示のMAP(#スペースに割当てる場合。)
-let g:SrcExpl_RefreshMapKey = "<Space>"
+"let g:SrcExpl_RefreshMapKey = "<Space>"
 "戻る機能のMAP(#ノーマルモードで動作する)
-let g:SrcExpl_GoBackMapKey  = "<C-b>"
-
-nnoremap <silent> <S-F5> :<C-u>SrcExplToggle<CR>
+"let g:SrcExpl_GoBackMapKey  = "<C-b>"
 
 
 
@@ -1175,11 +1010,8 @@ nnoremap <silent> <S-F5> :<C-u>SrcExplToggle<CR>
 "Support for additional filetypes
 "  https://github.com/majutsushi/tagbar/wiki
 
-
 NeoBundle 'majutsushi/tagbar'
 Bundle 'majutsushi/tagbar'
-nmap <F6> :TagbarToggle<CR>
-
 
 "Ctags-like tag generator for CoffeeScript
 "lukaszkorecki/CoffeeTags
@@ -1195,7 +1027,7 @@ nmap <F6> :TagbarToggle<CR>
 ":set tags+=~/tags/cpp.tags
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" ???
+""tag" ハイライト
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Vim-users.jp - Hack #226: 複数のキーワードを手軽にハイライトする
@@ -1206,21 +1038,17 @@ nmap <F6> :TagbarToggle<CR>
 "quickhl.vim
 "quickhl.vim
 
-
-
-
-
-
 "==========================================================
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" ハイライト
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "NeoBundle 'othree/html5.vim'
 "NeoBundle 'html5.vim'
 
 "vimのシンタックスハイライトをHTML5にも適用する - 鉄屑置き場
 "  http://d.hatena.ne.jp/ZYTH/20110921/1316638723
-
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" 文法チェック
@@ -1229,19 +1057,21 @@ nmap <F6> :TagbarToggle<CR>
 "Syntastic というシンタックスチェックプラグインが凄そう - Heavens hell
 "  http://d.hatena.ne.jp/heavenshell/20120106/1325866974
 
-"At the time of this writing, syntax checking plugins exist for applescript, c, coffee, cpp, css, cucumber, cuda, docbk, erlang, eruby, fortran, gentoo_metadata, go, haml, haskell, html, javascript, json, less, lua, matlab, perl, php, puppet, python, rst, ruby, sass/scss, sh, tcl, tex, vala, xhtml, xml, xslt, yaml, zpt
-
-
-
-
 "scrooloose/syntastic · GitHub
 "  https://github.com/scrooloose/syntastic
 """""NeoBundle 'scrooloose/syntastic.git'
 "syntastic/doc/syntastic.txt at master · scrooloose/syntastic · GitHub
 "  https://github.com/scrooloose/syntastic/blob/master/doc/syntastic.txt
 
+"適用言語
+"At the time of this writing, syntax checking plugins exist for applescript,
+"c, coffee, cpp, css, cucumber, cuda, docbk, erlang, eruby, fortran,
+"gentoo_metadata, go, haml, haskell, html, javascript, json, less, lua,
+"matlab, perl, php, puppet, python, rst, ruby, sass/scss, sh, tcl, tex,
+"vala, xhtml, xml, xslt, yaml, zpt
 
-"Python の場合は PyFlakes でチェックして欲しくて、Syntastic ではチェックして欲しくない。
+"Python の場合は PyFlakes でチェックして欲しくて、
+"Syntastic ではチェックして欲しくない。
 
 "let g:syntastic_mode_map = { 'mode': 'active',
 "  \ 'active_filetypes': ['html', 'perl'],
@@ -1389,7 +1219,6 @@ NeoBundle'closetag.vim'
 "NeoBundle 'tpope/vim-unimpaired'
 "NeoBundle 'tpope/vim-abolish'
 "NeoBundle 'tsaleh/vim-matchit'
-"NeoBundle 'vim-ruby/vim-ruby'
 "NeoBundle 'taku-o/vim-toggle'
 
 "NeoBundle 'ujihisa/unite-locate'
@@ -1707,64 +1536,6 @@ highlight SpecialKey ctermfg=DarkBlue
 
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Vimを使ったRuby On Rails開発環境の構築 - ナレッジエース
-"  http://blog.blueblack.net/item_133
-
-"Rails関連ファイルで文字コードをUFT-8に設定
-"au User Rails* set fenc=utf-8
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" キーカスタマイズ 1キー
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"ノーマルモードでもエンターキーで改行を挿入
-noremap <CR> o<ESC>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Vim: <LocalLeader>の設定 - while ("im automaton");
-"  http://whileimautomaton.net/2007/04/19221500
-
-"mapleaderマニュアル
-":help mapleader
-
-":let mapleader = ","
-":let maplocalleader=","
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"コンマの後に自動的にスペースを挿入
-inoremap , ,<Space>
-"inoremap <Space> <C-r>=strpart(getline("."),col(".")-3,2)==", "?"":" "<CR>
-
-" vimヘルプ Ctrl-i
-nnoremap <C-i> :<C-u>help<Space>
-" カーソル下のキーワードをヘルプでひく
-nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
-"他の候補u
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Vim-users.jp
-"  http://vim-users.jp/
-"Hack #122: 行末までヤンクする
-
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
-" which is the default
-" Yの動作をDやCと同じにする
-"D	カーソル位置から行末まで削除(デフォルトで設定済み)
-"C	カーソル位置から行末まで削除＆挿入モード(デフォルトで設定済み)
-"Y	カーソル位置から行末までヤンク
-nnoremap Y y$
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1913,10 +1684,7 @@ let savevers_dirs = &backupdir
 for maptype in ['n', 'N', '*', '#', 'g*', 'g#', 'G']
   execute 'nmap' maptype maptype . 'zz'
 endfor
-"}}}
-
-nnoremap <Space> jzz
-nnoremap <S-Space> kzz
+"
 
 "検索結果文字列をハイライト
 set hlsearch
@@ -1946,17 +1714,6 @@ set wrapscan
 
 "カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"ビジュアルモード時vで行末まで選択
-vnoremap v $h
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" vimの設定 tab設定
@@ -2105,554 +1862,6 @@ augroup END
 " Black
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" キーカスタマイズ ファンクションキー
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Vimの使い方－Tips
-"  http://www15.ocn.ne.jp/~tusr/vim/vim_text2.html
-
-"map  ノーマル  ビジュアル 演算待ち
-"map! 挿入 コマンドライン
-"nmap ノーマル
-"vmap ビジュアル
-"omap 演算待ち
-"imap 挿入
-"cmap コマンドライン
-"lmap ランゲージ
-
-"明確に範囲指定が必要なケース以外では、
-"範囲指定の影響をキャンセルするために<C-u>を含める必要があります。
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" HHKでの有効なファンクションキー
-" <S-F5>
-" <S-F6>
-" <S-F7>
-" <S-F8>
-" <S-F9>
-" <S-F11>
-" <S-F12>
-
-" <M-F11>
-" <M-F12>
-
-" <C-F5>
-" <C-F6>
-" <C-F7>
-" <C-F8>
-" <C-F9>
-" <C-F10>
-" <C-F11>
-" <C-F12>
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"tab <F1> 新規タブの作成
-"tab <F2> 一つ前のタブへ
-"tab <F3> 次のタブへ
-"tab <F4> タブを閉じる(最後のタブページは閉じられない)
-
-	map <silent> <F1> <Esc>:tabnew<CR>:tabmove<CR>
-	map <silent> <F2> <Esc>:tabprevious<CR>
-	map <silent> <F3> <Esc>:tabnext<CR>
-	map <silent> <F4> <Esc>:tabc<CR>
-"gt 右のタブへ
-"gT 左のタブへ
-
-" タブ移動 {{{
-noremap gh gT
-noremap gl gt
-"}}}
-
-
-"<F5>
-
-	"Rubyscript用
-	"QuickFix
-	"<F5>でRubyスクリプト
-	"保存後シンタックスチェックし、エラーをQuickFixに表示
-
-	"syntax ok なら E42エラーはありませんと表示
-	"エラーがあった場合表示＆カーソル移動してくれる。
-	"Rubyのシンタックスチェック
-	"silent! nmap <unique> <C-F5>   :w<CR>:make -c %<CR>:cw<CR>:cfirst<CR>zz
-"  nmap <silent> <S-F5>   :w<CR>:make -c %<CR>:cw<CR>:cfirst<CR>zz
-
-	"文法を厳しくチェック
-	"初期化されていない変数などを見つける。
-	"すべての警告を出力する。
-"	nnoremap <silent> <S-F5> :w<CR>:!ruby -W %<CR>
-"-w:数字が大きいほど細かく警告が出る。-W0は警告なし
-"	nnoremap <silent> <S-F5> :w<CR>:!ruby -W0 %<CR>
-"	nnoremap <silent> <S-F5> :w<CR>:!ruby -W1 %<CR>
-"	nnoremap <silent> <S-F5> :w<CR>:!ruby -W2 %<CR>
-
-
-
-
-
-
-"<F6>
-"vim-flake8
-	"autocmd FileType python map <buffer> <F6> :call Flake8()<CR>
-
-"<S-F5>
-"<S-F6>
-
-
-"<F7>
-	"savevers.vim
-	"<F7>でひとつ前のバックアップと比較
-	nmap <silent> <F7> :VersDiff -<CR>
-
-	"<Leader>vqでVersDiffから抜ける
-	nmap <silent> <S-F7> :VersDiff -c<CR>
-
-
-
-"<F8>
-	"<F8>でひとつ後のバックアップと比較
-	nmap <silent> <F8> :VersDiff +<CR>
-
-	"<Leader>vqでVersDiffから抜ける
-	nmap <silent> <S-F8> :VersDiff -c<CR>
-
-
-
-"<F9>
-	"<F9>正確に貼りつける。
-	"貼りつけたあとは改行を一回入れる。
-	nmap <silent> <F9> :a!<CR>
-
-
-
-"<F10>
-	"インデントを行う。
-	nmap <silent> <F10> <C-u>gg=G
-
-	"全てのウィンドウサイズを同じにする
-	"nmap <silent> <S-F10> <Esc><C-w>=
-
- 	"最大の幅にする。
-	"上下に分割されているウィンドウを広げる。
-	nmap <silent> <M-F10> <Esc><C-w>7+
-
-	"nmap <silent> <F6> <Esc><C-w> >
-	"nmap <silent> <M-F6> <Esc><C-w> <
-	"nmap <silent> <C-F6> <Esc><C-w> |
-
-	" Use <F10> to toggle between 'paste' and 'nopaste'
-	" <F10>キーで'paste'と'nopaste'を切り替える
-	"set pastetoggle=<F10>
-
-
-
-"<F11>
-	"○.vimrcファイルの再読み込み。
-	nmap <F11> <Esc>:source ~/.vimrc<CR>
-"	nmap <F11> <Esc>:source $VIM/_vimrc<CR>
-
-"設定ファイルテスト用
-
-	nmap <Leader><Leader> <Esc>:source ~/.vimrc<CR>
-"	nmap <Leader><Leader> <Esc>:source $HOME/_gvimrc<CR>
-
-" "\"は割り当て無し、元のまま、","へ割り当てただけだから
-
-
-
-"<F12>
-	"全ファイル保存せず強制終了。
-	nmap <silent> <F12>       <Esc>:qall!<CR>
-	vmap <silent> <F12>       <Esc>:qall!<CR>
-	omap <silent> <F12>       <Esc>:qall!<CR>
-	imap <silent> <F12>       <Esc>:qall!<CR>
-	cmap <silent> <F12> <C-u>:<Esc>:qall!<CR>
-
-
-
-	"現在のファイルを再読み込み。(変更を破棄して再読み込み。)
-	"カラー修飾されなかったときや、コマンドが効かなくなった時に
-	nmap <silent> <S-F12> <Esc>:e!<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" キーカスタマイズ 移動キー
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"inoremap で挿入モード限定。
-"通常モードでの特徴的な hjkl（←↓↑→）移動を挿入モードでも使えるようにしたもの。
-"<Home>とか<End>なんかはオマケですが、割と重宝してます。
-"<Home>だけ Ctrl キーじゃないのは、C-a が Linux の Screen と競合するから。
-
-"インサートモードで行のカーソル移動
-"inoremap <leader>h <Home>
-"inoremap <leader>l <End>
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-
-"挿入モード時のインデントキーとかぶっているため使用しない。
-inoremap <C-d> <Del>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Escの2回押しでハイライト消去
-nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"C-j で esc
-"ESC キーをCtrl+[で代用する。最多利用なのでキーマップした。
-inoremap <C-j> <ESC>:nohlsearch<CR>
-vnoremap <C-j> <ESC>
-"inoremap <C-m> <ESC>
-"vnoremap <C-m> <ESC>
-" 行ごとに挿入モードから編集モードに戻ってしまうのでコメントアウト
-
-
-"検索のハイライトを消す。
-":nohlsearch<CR><ESC>
-
-
-"""inoremap <C-h> <Left>
-"""inoremap <C-f> <Down>
-"""inoremap <C-k> <Up>
-inoremap <C-l> <Right>
-"スニペットウィンドウが開いたら焦らずカーソル移動でウィンドウを閉じるように動く。
-
-"<C-m>をいじるとCRキーが変な挙動に。
-"""inoremap <C-m> <Down>
-"imap <C-m> <Down>
-"挿入解除されてしまう。
-"inoremap <C-CR> <Down>
-"inoremap <C-Space> <Down>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"カーソルの上下移動が、補完候補上に来たときのキー操作とかぶるので
-"通常の挿入モードのカーソル移動はカーソルキーで操作する。
-
-"キル＆ヤンク
-inoremap <Leader>k <ESC>d$i
-inoremap <Leader>p <ESC>pi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" キーカスタマイズ 括弧
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Vim-users.jp - Hack #214: 括弧までを消したり置き換えたりする
-"  http://vim-users.jp/2011/04/hack214/
-
-onoremap ) t)
-onoremap ( t(
-vnoremap ) t)
-vnoremap ( t(
-
-
-"括弧など引用符をセットで入力すと、自動的に、一つ左に戻る。
-"括弧など引用符をセットで入力すと、自動的に、一つ左に戻る。
-"括弧など引用符をセットで入力すと、自動的に、一つ左に戻る。
-
-"左右括弧を入力して、中央にカーソル移動
-inoremap {} {}<LEFT>
-"inoremap [] []<LEFT>
-"inoremap () ()<LEFT>
-inoremap "" ""<LEFT>
-inoremap '' ''<LEFT>
-inoremap <> <><LEFT>
-"inoremap || ||<LEFT> "エラーが出る
-
-"autoclose.vim
-"autoclose.vim
-"autoclose.vim
-
-
-"左括弧だけ入力して、右括弧補完+中央にカーソル移動
-"inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-"inoremap ( ()<LEFT>
-"inoremap " ""<LEFT>
-"inoremap ' ''<LEFT>
-"inoremap < <><LEFT>
-"inoremap | ||<LEFT> "エラーが出る
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" キーカスタマイズ カーソルキー
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"同じ画面内の分割ウィンドウへ移動
-
-"nmap <silent> <LEFT>  <Esc><C-w>h
-"nmap <silent> <DOWN>  <Esc><C-w>j
-"nmap <silent> <UP>    <Esc><C-w>k
-"nmap <silent> <RIGHT> <Esc><C-w>l
-
-" change window size
-"{{{
-nnoremap <silent> <Up>    :2 wincmd -<CR>
-nnoremap <silent> <Down>  :2 wincmd +<CR>
-nnoremap <silent> <Left>  :7 wincmd <<CR>
-nnoremap <silent> <Right> :7 wincmd ><CR>
-"}}}
-
-nnoremap <silent> <C-h> <Esc><C-w>h
-nnoremap <silent> <C-j> <Esc><C-w>j :nohlsearch<CR>
-nnoremap <silent> <C-k> <Esc><C-w>k
-nnoremap <silent> <C-l> <Esc><C-w>l
-
-
-
-" window movement
-"{{{
-"for key in ['h', 'j', 'k', 'l']
-"  execute 'nnoremap <silent> <C-' . key . '> :wincmd' key . '<CR>'
-"endfor
-"}}}
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Vim-users.jp - Hack #159: オプションの値を気にせずsplit, vsplitする
-"  http://vim-users.jp/2010/07/hack159/
-
-nmap weh <SID>(split-to-h)
-nmap wej <SID>(split-to-j)
-nmap wek <SID>(split-to-k)
-nmap wel <SID>(split-to-l)
-
-nnoremap <SID>(split-to-h) :<C-u>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
-nnoremap <SID>(split-to-j) :<C-u>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
-nnoremap <SID>(split-to-k) :<C-u>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
-nnoremap <SID>(split-to-l) :<C-u>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"矢印キーでの移動を禁止する: RemovableType
-"  http://rt.air-nifty.com/blog/2008/08/post_d08e.html
-
-"矢印キーでの移動を禁止する
-
-"mapは
-	"ノーマル
-	"ビジュアル
-	"オペレータ保留モード
-"map!は
-	"インサート
-	"コマンドモード
-"でのキーマッピングを指定する。
-
-"map  <LEFT>  <ESC>
-"map! <LEFT>  <ESC>
-
-"map  <DOWN>  <ESC>
-"map! <DOWN>  <ESC>
-
-"map  <UP>    <ESC>
-"map! <UP>    <ESC>
-
-"map  <RIGHT> <ESC>
-"map! <RIGHT> <ESC>
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" ウィンドウ分割キー操作
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"横分割
-	":split
-	":sp
-	"Ctrl-w s
-
-"縦分割
-	":vsplit
-	":vs
-	"Ctrl-w v
-
-"すべてのファイルをウィンドウで開く
-	":ball
-	":ba
-
-"Ctrl-w [wW]	カーソルをウィンドウ間で次々と移動
-"Ctrl-w [hjklp]	カーソルをウィンドウ間で移動。
-"Ctrl-w [tb]	カーソルを一番上（下）のウィンドウに移動
-
-"Ctrl-w p
-
-":only			カーソルがあるウィンドウのみにする
-"Ctrl-w o
-
-":close			カーソルがあるウィンドウを閉じる
-"Ctrl-w c
-
-"Ctrl-w q		カーソルがあるウィンドウを終了する？
-
-":new			横分割して新規バッファを作成
-"Ctrl-w n
-
-":vnew			縦分割して新規バッファを作成
-
-"Ctrl-w [HJKL]	ウィンドウそのものを移動
-"Ctrl-w [rR]	ウィンドウをスワップ
-"Ctrl-w [+-]	ウィンドウの高さを変更
-"Ctrl-w _
-"Ctrl-w =		全てのウィンドウサイズを同じにする
-
-"nnoremap <silent> wq <Esc><C-w>=
-"nnoremap <silent> ww <Esc><C-w><C-w>
-
-"w1 :only<CR>	画面を一つにする(変更があると無効となる)
-"w2 :sp<CR>		画面を上下に分ける(同じファイル)
-"w3 :vsp<CR>	  画面を左右に分ける(同じファイル)
-"w4 :new<CR>	  画面を上下に分割する(新しいバッファを作成)
-"w5 :vnew<CR>	画面を左右に分割する(新しいバッファを作成)
-"w6 :vsp<CR>	  画面を左右に分割する(同じファイル)
-
-"nnoremap <silent> w1 :only<CR>
-"nnoremap <silent> w2 :sp<CR>
-"nnoremap <silent> w3 :vsp<CR>
-"nnoremap <silent> w4 :new<CR>
-"nnoremap <silent> w5 :vnew<CR>
-"nnoremap <silent> w6 :vsp<CR>
-"nnoremap <silent> w7 <Esc><C-w>|
-"nnoremap <silent> w8 <Esc><C-w>_
-"nnoremap <silent> w7 <Esc><C-w>30<
-"nnoremap <silent> w8 <Esc><C-w>30-
-"nnoremap <silent> w9 <Esc><C-w>30+
-"nnoremap <silent> w0 <Esc><C-w>30>
-"nnoremap <silent> w7 <Esc><C-w>|
-"nnoremap <silent> w9 <Esc><C-w>_
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" キーカスタマイズ 日付キー
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"このマップはカーソルの位置に現在の日時を挿入します。
-"<Leader> はデフォルトで\キー
-inoremap <Leader>date <C-R>=strftime('%Y/%m/%d (%a)')<CR>
-inoremap <Leader>time <C-R>=strftime('%H:%M')<CR>
-inoremap <Leader>w3cd <C-R>=strftime('%Y-%m-%dT%H:%M:%S+09:00')<CR>
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" キーカスタマイズ クリップボード系
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" OSのクリップボードを使用する
-"set clipboard+=unnamed
-" ヤンクした文字は、システムのクリップボードに入れる"
-"set clipboard=unnamed
-
-"vimエディタからクリップボードを利用する。 名無しのvim使い
-"  http://nanasi.jp/articles/howto/editing/clipboard.html
-
-"ビジュアルモードで選択したテキストが、クリップボードに入るようにする。
-"set clipboard+=autoselect
-
-"無名レジスタに入るデータを、*レジスタにも入れる。
-"set clipboard+=unnamed
-"set clipboard=unnamedplus,unnamed
-
-
-"カーソル上の言葉をclipboardへヤンク "{{{
-"コマンド tt
-"コマンド tt
-"コマンド tt
-function! s:yank_to_clipboard()
-  if &clipboard =~# 'unnamed'
-    normal! yiw
-  else
-    set clipboard +=unnamed
-    normal! yiw
-    set clipboard -=unnamed
-  endif
-endfunction
-nmap tt :call <SID>yank_to_clipboard()<CR>
-"}}}
-
-" 単語境界に-を追加 {{{
-"コマンド <Space>K
-
-setlocal iskeyword +=-
-function! s:toggle_is_key_word_hyphen() "{{{
-  if &iskeyword =~# ',-'
-    set iskeyword -=-
-  else
-    set iskeyword +=-
-  endif
-  echo &iskeyword
-endfunction "}}}
-command! ToggleIsKeyWordHyPhen  call s:toggle_is_key_word_hyphen()
-nnoremap <Space>K :call <SID>toggle_is_key_word_hyphen()<CR>
-"}}}
-
-" clipboardにunnamedを追加 {{{
-function! s:toggle_clipboard_unnamed() "{{{
-  if &clipboard =~# 'unnamed'
-    set clipboard -=unnamed
-    echo 'clipboard mode OFF'
-  else
-    set clipboard +=unnamed
-    echo 'clipboard mode ON'
-  endif
-endfunction "}}}
-command! ToggleClipboardUnnamed call s:toggle_clipboard_unnamed()
-nnoremap <Space>P :call <SID>toggle_clipboard_unnamed()<CR>
-"}}}
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Vim上でもCtrl+C、Ctrl+Vが使えるようにする。
-"選択部分をクリップボードにコピー
-vmap <C-C> "*y
-
-"挿入モード時、クリップボードから貼り付け
-imap <C-V> <ESC>"*pa
-
-"選択部分をクリップボードの値に置き換え
-vmap <C-V> d"*P
-
-"コマンドライン時、クリップボードから貼り付け
-cmap <C-V> <C-R>*
-
-" GUI版vimエディタで、この機能を有効にする
-"set guioptions+=a
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" テンプレート
@@ -2734,17 +1943,9 @@ set autoread
 "ファイルを切り替える際、自動で保存するオプションとして
 set autowrite
 
-"<Leader><Leader>で変更があれば保存
-noremap zz :up<CR>
-
-
-
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "キーコードやマッピングされたキー列が完了するのを待つ時間(ミリ秒)（デフォルトは1000）
-" Quickly time out on keycodes, but never time out on mappings
 " キーコードはすぐにタイムアウト。マッピングはタイムアウトしない
 set notimeout ttimeout ttimeoutlen=2500
 
@@ -2849,9 +2050,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
       \ | wincmd p | diffthis
 endif
-" }}}
-
-
 
 "diff - vimdoc-ja
 "  https://sites.google.com/site/vimdocja/diff-html
@@ -2860,90 +2058,6 @@ endif
 "[c		前(上方)の変更の先頭へ移動する。
 "]c		次(下方)の変更の先頭へ移動する。
 "カウントが与えられた場合、その回数繰り返される。
-
-
-
-
-
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" grep
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-" for grep {{{
-"{{{ 外部grep
-let &grepprg="find . -type f -name '*.*'
-              \ -a -not -regex '.*\\.swp$'
-              \ -a -not -regex '.*\\.gz$'
-              \ -a -not -regex '.*\\.gif$'
-              \ -a -not -regex '.*\\.png$'
-              \ -a -not -regex '.*\\.jpg$'
-              \ -a -not -regex '.*\\.bak$'
-              \ -a -not -regex '.*\\.bk$'
-              \ -a -not -regex '.*\\.class$'
-              \ -a -not -regex '.*\\.db$'
-              \ -a -not -regex '.*\\.properties$'
-              \ -a -not -regex '.*_$'
-              \ -a -not -regex '.*log$'
-              \ -a -not -regex '.*gomi.*'
-              \ -a -not -regex '.*hoge.*'
-              \ -a -not -regex '.*/\\.svn/.*'
-              \ -a -not -regex '.*/\\.git/.*'
-              \ -a -not -regex '.*/tmp/.*'
-              \ -a -not -regex '.*/resources/.*'
-              \ -a -not -regex '.*/images/.*'
-              \ -a -not -regex '.*/plugins/.*'
-              \ -a -not -regex '.*/coverage/.*'
-              \ -a -not -regex '.*/alias/.*'
-              \ -a -not -regex '.*/ext/.*'
-              \ -a -not -regex '.*_compress/.*'
-              \ -a -not -regex '^\\./\\..*'
-              \ -a -not -regex '^\\./work.*'
-              \ -a -not -regex '^\\./cpan.*'
-              \ -a -not -regex '^\\./etc.*'
-              \ -a -not -regex '.*schema.rb$'
-              \ -print0 \\| xargs -0 grep -nH"
-"}}}
-
-" カーソル直下の単語(Word)
-nmap <C-g><C-w> :grep "<C-R><C-W>" \| bot cw<CR>
-" カーソル直下の単語(WORD)(C-aはscreenとバッティングするためC-eに)
-nmap <C-g><C-e> :grep "<C-R><C-A>" \| bot cw<CR>
-" 最後に検索した単語
-nmap <C-g><C-h> :grep "<C-R>/" \| bot cw<CR>
-
-"}}}
-
-
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" 上下のカーソルキーでコマンドライン履歴表示
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Ctrl+Nでコマンドライン履歴を一つ進む(前方一致)
-cnoremap <C-P> <UP>
-" Ctrl+Pでコマンドライン履歴を一つ戻る(前方一致)
-cnoremap <C-N> <DOWN>
-
-
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" 全選択
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nnoremap <Leader>a ggVG
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" メニューカラー
@@ -2956,19 +2070,6 @@ highlight PmenuSbar ctermbg=0
 
 highlight clear Folded
 highlight clear FoldColumn
-
-
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Visually select the text that was last edited/pasted
-nmap gV `[v`]
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" Vim､Ruby編集時にinsert modeが異常に重くなる現象の解決方法

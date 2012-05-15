@@ -336,10 +336,17 @@ xnoremap <silent> [unite]r d:<C-u>Unite -buffer-name=register register history/y
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"unite-helpの設定
+"ヘルプを検索するsource
+" Execute help.
+"nnoremap <C-h>  :<C-u>Unite -start-insert help<CR>
+" Execute help by cursor keyword.
+nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR>
+
 "vim テクニックバイブルp360
 "nnoremap <silent> ,gs :<C-u>Unite -buffer-name=files buffer_tab file_rec file file_mru<CR>
 "nnoremap <silent> sg :<C-u>Unite grep -no-quit<CR>
-nnoremap <silent> <C-h> :<C-u>Unite -start-insert help<CR>
+"nnoremap <silent> <C-h> :<C-u>Unite -start-insert help<CR>
 nnoremap <silent> <C-t><C-t> :<C-u>Unite -immediately tab:no-current<CR>
 
 
@@ -356,17 +363,6 @@ nnoremap <silent> <C-t><C-t> :<C-u>Unite -immediately tab:no-current<CR>
 " ウィンドウを縦に分割して開く
 "au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('vsplit')
 "au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('vsplit')
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"unite-helpの設定
-"ヘルプを検索するsource
-" Execute help.
-nnoremap <C-h>  :<C-u>Unite -start-insert help<CR>
-" Execute help by cursor keyword.
-nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR>
 
 
 
