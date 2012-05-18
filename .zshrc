@@ -1221,9 +1221,13 @@ alias  gpr='git pull --rebase'
 
 
 #log
-alias  llo='git log'
-alias   lo='git log --graph --oneline -n 10'
+#alias  llo='git log'
 alias  glg='git log --pretty=oneline --abbrev-commit'
+alias  llo='git log --graph --oneline -n 10'
+alias   lo='git log --graph --all --decorate --oneline -n 20'
+
+
+
 
 #ブランチ
 #ブランチを作る。名前を後ろに付けないと現在の情報を表示。
