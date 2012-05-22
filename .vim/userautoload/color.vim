@@ -1,6 +1,6 @@
 
 "現在使用中
-colorscheme bluegreen
+"colorscheme bluegreen
 
 "git のコミットメッセージ編集の時だけvimのカラースキーマを変更する方法 | わすれないように.
 "http://www.makies.com/2011/11/297/

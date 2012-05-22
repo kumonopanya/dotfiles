@@ -244,21 +244,22 @@ NeoBundle 'Shougo/unite.vim.git'
 "Vim-users.jp - Hack #188: 見た目を気軽に変更する
 "  http://vim-users.jp/2010/12/hack188/
 
-"--"NeoBundle 'ujihisa/unite-colorscheme'
-"--"NeoBundle 'ujihisa/unite-font'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'ujihisa/unite-font'
 
-"g:unite_enable_start_insert: Uniteを挿入モードで開始します
-"g:unite_enable_split_vertically: Uniteを縦分割で開始します
-"ifの行: unite.vimがインストールされているときのみ以下のキーマッピングを行う
-"このように、:Uniteコマンドには複数のsourceを指定することができます
+"g:unite_enable_start_insert: Uniteを挿入モードで開始します。
+"--"let g:unite_enable_start_insert = 1
 
-"--"let g:unite_enable_split_vertically = 1
-"--"if globpath(&rtp, 'plugin/unite.vim') != ''
-"--"  nnoremap ccv :<C-u>Unite -auto-preview colorscheme<Cr>
-"--"endif
+"g:unite_enable_split_vertically: Uniteを縦分割で開始します。
+"let g:unite_enable_split_vertically = 1
+
+"ifの行: unite.vimがインストールされているときのみ以下のキーマッピングを行う。
+"このように、:Uniteコマンドには複数のsourceを指定することができます。
+if globpath(&rtp, 'plugin/unite.vim') != ''
+  nnoremap ccv :<C-u>Unite -auto-preview colorscheme<Cr>
+endif
 
 "カラースキームをプレビューできるコマンド
-"ac
 ":Unite -auto-preview colorscheme
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -939,15 +940,27 @@ let g:yankring_max_history = 7
 ""tag" vim-powerline ステータスライン
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Lokaltog/vim-powerline'
 
-" vim-powerline
-"let g:Powerline_symbols = 'fancy'
-"let g:Powerline_symbols = 'unicode'
-
-"ファイル名、ファイル系文字コード 行番号
+" 設定
+" userautoload/statusline.vim
 
 "==========================================================
+
+" located in autoload/Powerline/Colorschemes/.
+"緑系等
+"let g:Powerline_colorscheme="default"
+"青系等
+let g:Powerline_colorscheme="skwp"
+
+"==========================================================
+
+" located in autoload/Powerline/Themes/.
+"挿入、ビジュアル時に変化なし
+"let g:Powerline_theme="default"
+"let g:Powerline_theme="skwp"
+
+
 
 
 
@@ -1279,7 +1292,51 @@ NeoBundle'closetag.vim'
 "==========================================================
 "==========================================================
 
-"color
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" colorschme
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"==========================================================
+
+"Vim-users.jp - Hack #64: 256色ターミナルでVimを使用する
+"  http://vim-users.jp/2009/08/hack64/
+
+"NeoBundle 'CSApprox'
+"CSApprox.vimの使い方
+":colorscheme {color_name}を使う。
+"autocmdでフックをかけているので、ColorSchemeが自動的に変換され、Vimに適用されます。
+
+"==========================================================
+
+"Vim-users.jp - Hack #64: 256色ターミナルでVimを使用する
+"http://vim-users.jp/2009/08/hack64/
+
+"端末が256色対応時
+set t_Co=256
+colorscheme bluegreen
+
+"==========================================================
+
+"vim-powerlineを利用時、boldが無効になっているので再度設定してみた。
+hi clear
+"コメントを太文字化
+hi Comment cterm=bold
+hi Statement cterm=bold
+
+"==========================================================
+
+"colorscheme wombat256
+"colorscheme molokai
+"colorscheme desert256
+"colorscheme koehler
+"colorscheme railscasts3
+
+
+
+"==========================================================
+
+
+
 "TextMate originally
 "molokai - A port of the monokai scheme for TextMate : vim online
 "  http://www.vim.org/scripts/script.php?script_id=2340
@@ -1724,142 +1781,6 @@ set tabpagemax=8
 
 "tabバーを最初から表示、まったく表示しないのなら0、デフォルトは1
 set showtabline=2
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" vimの設定 ステータスライン
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"ステータス行を表示
-set laststatus=2
-
-""ステータス行の指定
-"fugitiveを利用できる場合。
-set statusline=%f%<%m%r%h%w\ %y%<%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%=%<<%l/%L>,[%c%V]%6P\ %{fugitive#statusline()}\
-
-"fugitiveを利用できない場合。
-"set statusline=%y%<%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%f%m%r%h%w%=<%l,%c%V>%6p%%
-
-"set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
-
-"設定例
-""ステータス行の指定
-"左端1	ファイル名
-"set statusline=%m%<%f\ %h%r
-"左端2	GITレポジトリ
-"set statusline+=%{fugitive#statusline()}\
-"左端4	ファイルタイプ
-"set statusline+=%y
-"左端5	ステータス行に文字コードと改行コード表示
-"set statusline+=%<%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}
-
-"右端 行数、カーソル位置
-"set statusline+=%=<%l/%L>,[%c%V]%6P
-
-"set statusline=  	設定
-"set statusline+=		追加設定
-
-"\  - \とスペースでスペースを置ける。
-"%< - 行が長すぎるときに切り詰める位置
-"%f - ファイル名（相対パス）
-"%F - ファイル名（絶対パス）
-"%t - ファイル名（パス無し)
-"%y - ファイルタイプ
-
-"%m - 修正フラグ （[+]または[-]）
-"%r - 読み込み専用フラグ（[RO]）
-"%h - ヘルプバッファ
-"%w - preview window flag
-
-"%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']'} - fileencodingとfileformatを表示
-
-"%= - 左寄せと右寄せ項目の区切り（続くアイテムを右寄せにする）
-"%l - 現在のカーソルの行番号
-"%L - 総行数
-"%c - column番号
-"%V - カラム番号
-
-
-
-""""""""""""""""""""""""""""""
-"挿入モード時、ステータスラインの色を変更
-""""""""""""""""""""""""""""""
-let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
-
-if has('syntax')
-  augroup InsertHook
-    autocmd!
-    autocmd InsertEnter * call s:StatusLine('Enter')
-    autocmd InsertLeave * call s:StatusLine('Leave')
-  augroup END
-endif
-
-let s:slhlcmd = ''
-function! s:StatusLine(mode)
-  if a:mode == 'Enter'
-    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-    silent exec g:hi_insert
-  else
-    highlight clear StatusLine
-    silent exec s:slhlcmd
-    redraw
-  endif
-endfunction
-
-function! s:GetHighlight(hi)
-  redir => hl
-  exec 'highlight '.a:hi
-  redir END
-  let hl = substitute(hl, '[\r\n]', '', 'g')
-  let hl = substitute(hl, 'xxx', '', '')
-  return hl
-endfunction
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" 色 カラー
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" 日本語入力ON時のカーソルの色を設定
-if has('multi_byte_ime') || has('xim')
-	highlight CursorIM guibg=Purple guifg=NONE
-endif
-
-" カーソル行をハイライト
-set cursorline
-
-  " カレントウィンドウにのみ罫線を引く
-augroup cch
-  autocmd! cch
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter,BufRead * set cursorline
-augroup END
-
-:highlight clear CursorLine
-
-
-
-
-:highlight CursorLine gui=underline guibg=black
-
-":highlight CursorLine cterm=underline
-:highlight CursorLine ctermbg=Black
-":highlight CursorLine ctermfg=none
-
-":highlight Normal ctermfg=grey
-"highlight Normal ctermbg=Black
-":highlight StatusLine term=none cterm=none ctermfg=black ctermbg=grey
-
-" DarkRed
-" DarkGreen
-" DarkBlue
-" DarkCyan
-" DarkMagenta
-" DarkYellow
-" White
-" Black
 
 
 
