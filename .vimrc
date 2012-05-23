@@ -1292,11 +1292,11 @@ NeoBundle'closetag.vim'
 "==========================================================
 "==========================================================
 
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" colorschme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"==========================================================
 
 "Vim-users.jp - Hack #64: 256色ターミナルでVimを使用する
 "  http://vim-users.jp/2009/08/hack64/
@@ -1311,19 +1311,21 @@ NeoBundle'closetag.vim'
 "Vim-users.jp - Hack #64: 256色ターミナルでVimを使用する
 "http://vim-users.jp/2009/08/hack64/
 
-"端末が256色対応時
-set t_Co=256
-colorscheme bluegreen
 
 "==========================================================
 
-"vim-powerlineを利用時、boldが無効になっているので再度設定してみた。
-hi clear
-"コメントを太文字化
-hi Comment cterm=bold
-hi Statement cterm=bold
+
 
 "==========================================================
+
+
+
+"==========================================================
+
+
+
+"==========================================================
+
 
 "colorscheme wombat256
 "colorscheme molokai
@@ -1577,8 +1579,6 @@ set backspace=2
 "  set list
 "catch
 "endtry
-highlight NonText ctermfg=DarkBlue
-highlight SpecialKey ctermfg=DarkBlue
 
 "set wrap linebreak nolist
 " cf http://vimcasts.org/episodes/soft-wrapping-text/
@@ -1979,18 +1979,6 @@ endif
 "[c		前(上方)の変更の先頭へ移動する。
 "]c		次(下方)の変更の先頭へ移動する。
 "カウントが与えられた場合、その回数繰り返される。
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" メニューカラー
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" 色番号  :help ctermbg(NR-8)
-highlight Pmenu     ctermbg=4
-"highlight PmenuSel  ctermbg=5
-highlight PmenuSbar ctermbg=0
-
-highlight clear Folded
-highlight clear FoldColumn
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" Vim､Ruby編集時にinsert modeが異常に重くなる現象の解決方法

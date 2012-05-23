@@ -244,14 +244,6 @@ nmap <F6> :TagbarToggle<CR>
 "nmap <F11> :Ref webdict<space>
 "nmap <S-F11> :Ref webdict wiktionary<space>
 
-	"○.vimrcファイルの再読み込み。
-	"nmap <F11> <Esc>:source ~/.vimrc<CR>
-"	nmap <F11> <Esc>:source $VIM/_vimrc<CR>
-
-"設定ファイルテスト用
-
-	nmap <Leader><Leader> <Esc>:source ~/.vimrc<CR>
-"	nmap <Leader><Leader> <Esc>:source $HOME/_gvimrc<CR>
 
 " "\"は割り当て無し、元のまま、","へ割り当てただけだから
 
@@ -298,7 +290,13 @@ inoremap <C-d> <Del>
 
 "Escの2回押しでハイライト消去
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
+nmap <Leader><Leader> <Esc>:nohlsearch<CR><ESC>
 
+"○.vimrcファイルの再読み込み。
+"現在設定ファイルを分割している。
+"このファイルだけ読み込み直すと
+"設定が崩れるのでコメントアウト。
+" nmap <Leader><Leader> <Esc>:source ~/.vimrc<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
