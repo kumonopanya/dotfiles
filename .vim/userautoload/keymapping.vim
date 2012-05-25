@@ -11,7 +11,7 @@ noremap ; :
 "noremap : ;
 
 "<Leader><Leader>で変更があれば保存
-noremap zz :up<CR>
+"noremap zz :up<CR>
 
 "カーソル下のヘルプ
 nnoremap H; :<C-u>help<Space><C-r><C-w><CR>
@@ -19,22 +19,24 @@ nnoremap H; :<C-u>help<Space><C-r><C-w><CR>
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+" 全選択
+nnoremap <Leader>a ggVG
+
 "ビジュアルモード時vで行末まで選択
 vnoremap v $h
+" Visually select the text that was last edited/pasted
+nmap gV `[v`]
 
 " Ctrl+Nでコマンドライン履歴を一つ進む(前方一致)
 cnoremap <C-P> <UP>
 " Ctrl+Pでコマンドライン履歴を一つ戻る(前方一致)
 cnoremap <C-N> <DOWN>
 
-" 全選択
-nnoremap <Leader>a ggVG
-
-" Visually select the text that was last edited/pasted
-nmap gV `[v`]
 
 "ノーマルモードでもエンターキーで改行を挿入
-noremap <CR> o<ESC>
+"noremap <CR> o<ESC>
+"↑QuickFixウィンドウでリターンキーで飛ばなくなるのでコメントアウト。
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
