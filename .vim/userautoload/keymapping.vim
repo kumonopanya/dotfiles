@@ -36,6 +36,8 @@ cnoremap <C-N> <DOWN>
 "ノーマルモードでもエンターキーで改行を挿入
 "noremap <CR> o<ESC>
 "↑QuickFixウィンドウでリターンキーで飛ばなくなるのでコメントアウト。
+autocmd FileType * if &ft != 'qf' | nnoremap <buffer> <Cr> o<Esc> | endif
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
