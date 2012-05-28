@@ -1059,28 +1059,6 @@ alias    ap='cd ~/app'
 alias    ru='cd ~/app/ruby'
 
 
-#alias     =' '
-#alias     =' '
-#alias     =' '
-#alias     =' '
-alias    cd6='~/Downloads/ruby1.9sample/'
-alias    cd5='~/Workspace/rs'
-alias    cd4='~/Workspace'
-alias    cd3='~/Workspace/Rspec'
-alias    cd2='~/Workspace/ruby'
-
-
-#######################################################################
-#######################################################################
-#######################################################################
-
-# alias    ccd='cd ~/bootstrap'
-# alias    ccd='cd ~/py'
- alias    ccd='cd ~/MetaRuby'
-# alias    ccd='cd ~/Rails/blog'
-
-ccd
-
 
 #######################################################################
 #######################################################################
@@ -1754,8 +1732,9 @@ python_path=(# カレントディレクトリのライブラリを優先する
 #######################################################################
 #######################################################################
 
-
-
+#Haskell
+alias ha='ghci'
+alias hh='ghci'
 
 
 
@@ -1785,5 +1764,28 @@ python_path=(# カレントディレクトリのライブラリを優先する
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 
+#######################################################################
+#######################################################################
+#######################################################################
+
+#alias     =' '
+#alias     =' '
+#alias     =' '
+#alias     =' '
+alias    cd6='~/Downloads/ruby1.9sample/'
+alias    cd5='~/Workspace/rs'
+alias    cd4='~/Workspace'
+alias    cd3='~/Workspace/Rspec'
+alias    cd2='~/Workspace/ruby'
+
+# alias    ccd='cd ~/bootstrap'
+# alias    ccd='cd ~/py'
+# alias    ccd='cd ~/MetaRuby'
+# alias    ccd='cd ~/Rails/blog'
+
+
+
+alias    ccd='cd ~/Haskell'
+ccd
 
 

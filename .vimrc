@@ -288,7 +288,12 @@ endif
 " unite.vimとvimprocがインストールされていると非同期でプラグインがアップデートできる。
 " Windows7 64bitでvimshellやvimprocを使うには特別なインストール設定が必要なのでコメントアウト
 "NeoBundle 'Shougo/vimshell.git'
-"NeoBundle 'Shougo/vimproc.git'
+NeoBundle 'Shougo/vimproc.git'
+
+"コンパイルする。
+"make -f make_unix.mak
+
+
 
 "--"NeoBundle 'sudo.vim'
 
@@ -343,7 +348,9 @@ NeoBundle 'thinca/vim-ref'
 "==========================================================
 
 "let g:ref_refe_cmd = '~/rubyrefm/refe-1_9_2'
-"let g:ref_use_vimproc = 0   " vimprocをインストールしてない場合は0を指定
+
+" vimprocをインストールしてない場合は0を指定
+"let g:ref_use_vimproc = 0   
 
 "操作例
 ":Unite ref/perldoc
@@ -1173,22 +1180,118 @@ NeoBundle'closetag.vim'
 
 "==========================================================
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""tag" Haskell
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-
-
-
-"==========================================================
-
-
-
-
-
+"シナプティックパッケージマネージャから
+"ghc
+"haskell-platform 
+"をインストールしておく。
 
 "==========================================================
 
+"Vim の開発環境
+"  http://www.slideshare.net/eagletmt/vim-13092108
 
+"vimprocをインストールしておく。
 
+"cabal =Haskellのパッケージマネージャ
+"cabalコマンドの使い方 - あどけない話
+"  http://d.hatena.ne.jp/kazu-yamamoto/20081027/1225082163
+
+"cabal update
+"cabal install cabal-install
+
+"ghc-modをインストール。
+"cabal install ghc-mod
+
+NeoBundle 'eagletmt/ghcmod-vim'
+
+":GhcModCheck 
+"・GhcModCheckコマンドで GHC からのコンパイルエラー
+"・警告 を QuickFix に表示 コンパイルエラー
+"・警告がある場合は自動的に QuickFix を開く
+
+":GhcModCheckAsync 
+":GhcModCheckAsync コマンドは :GhcModCheck を (疑似)
+" 非同期 的に実行 ⇒ 保存時に自動的にチェックしてもストレスが少ない！
+
+":GhcModLint 
+"同様に :GhcModLint コマンドで
+"HLint からの提案を QuickFix に表示
+"非同期版の :GhcModLintAsnyc、
+"非同期的に :GhcModCheck と :GhcModLint の両方を行う :GhcModCheckAndLintAsync も
+
+":GhcModType 
+"カーソル下の型を表示。
+"型を表示している部分はハイライトされる。
+"ハイライトは :GhcModTypeClear コマンドで消す。
+"式 パターン 束縛 の型を表示できる 
+
+":GhcModType の使い道 
+"コードリーディング時のサポートに なかなか型が合わない
+"↓
+"とりあえず undefined を書いてコンパイルを通して型を見る
+
+"==========================================================
+
+"neco-ghc
+"オムニ補完を行う関数
+"necoghc#omnifunc()を提供するプラグイン。
+"インポートするモジュール名の補完
+"インポートしているモジュールを考慮した補完
+"LANGUAGE プラグマの補完
+"OPTIONS GHC プラグマの補完
+
+"neco-ghc の導入
+"  https://github.com/ujihisa/neco-ghc
+NeoBundle 'ujihisa/neco-ghc'
+
+"オムニ補完 
+"Haskell のファイルを開いているバッファで
+"オムニ補完の関数をnecoghc#omnifunc に設定
+
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+"インサートモードで <C-x><C-o> で補完できる
+"自動補完 neocomplcache を導入することで自動補完が可能
+
+"==========================================================
+
+"unite-haddock
+"  https://github.com/eagletmt/unite-haddock
+
+"unite.vim のインターフェイスで、
+"インストール済みのモジュール名の一覧から絞り込んで
+"選択してドキュメントをブラウザを開く
+NeoBundle 'eagletmt/unite-haddock'
+
+":Unite haddock
+"インストール済みのモジュール一覧を表示
+"そこからモジュールを選択し、
+"ローカルのドキュメントを開く (デフォルト) (browse local)
+"リモート (Hackage) のドキュメントを開く (browse remote)
+
+"==========================================================
+
+":Unite hoogle Hoogle をインストールしてあると、
+":Unite hoogle でHoogle による検索結果から
+"関数や型のドキュメントを開くことが できる
+
+"Hoogle の導入
+"cabal install hoogle
+"hoogle data default
+"hoogle data vector
+"    vector.hoo を作成
+"hoogle combine *.hoo
+"   *.hoo をまとめて default.hoo を作成
+
+"==========================================================
+
+"Vim-users.jp - Hack #241: Haskellで使いたい関数を使ってからそのモジュールをimportする
+"  http://vim-users.jp/2011/12/hack241/
+
+"==========================================================
 
 
 
