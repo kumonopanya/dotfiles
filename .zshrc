@@ -199,7 +199,7 @@ export GEM_HOME
 #gisty
 #gistを便利にするツール
 
-	export GISTY_DIR=~/dev/gisty
+export GISTY_DIR=~/dev/gisty
 
 
 #######################################################################
@@ -386,8 +386,8 @@ setopt list_packed
 
 #rvm使用時（zsh）
 #rvm-prompt
-#i	ruby
-#v	1.9.2
+#i ruby
+#v 1.9.2
 #g	@rails3
 #[10-12-24 19:31] ruby-1.9.2@rails3 hi%
 #PROMPT="%U[%D %T] \$(~/.rvm/src/rvm/binscripts/rvm-prompt i v g ) $USER%%% %u "
@@ -1019,11 +1019,8 @@ setopt complete_aliases     # aliased ls needs if file/dir completions work
 
 # -Eオプションは 時間を行頭に付加
 #alias h='history -E -1000'
-alias h='history '
-
-
-
-alias  la="ls -a"
+alias     h='history '
+alias    la="ls -a"
 
 #alias   ll="ls -l"
 #alias   ll='ls -ltr'
@@ -1050,7 +1047,7 @@ alias    hi='cd ~'
 
 alias     d='date '
 
-alias    ccc='clear;cucumber'
+alias   ccc='clear;cucumber'
 alias    cu='clear;cucumber'
 alias    au='autotest --style rspec2'
 alias    gu='guard'
@@ -1112,7 +1109,7 @@ alias -s rb=vi
 #alias  bu="bundle console"
 
 #ruby pry
-alias  irb='pry'
+#alias  irb='pry'
 
 
 
@@ -1735,6 +1732,9 @@ python_path=(# カレントディレクトリのライブラリを優先する
 #Haskell
 alias ha='ghci'
 alias hh='ghci'
+
+#vimでghc-modを使うためにパスを追加。
+export PATH=~/.cabal/bin:$PATH
 
 
 

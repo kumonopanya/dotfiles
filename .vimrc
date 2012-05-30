@@ -1213,36 +1213,102 @@ NeoBundle'closetag.vim'
 "cabal update
 "cabal install cabal-install
 
+
+"==========================================================
+
+"ghc-mod の Vim プラグイン ghcmod-vim を書いた - eagletmt's blog
+"  http://eagletmt.hateblo.jp/entry/2012/02/23/130526
+
 "ghc-modをインストール。
 "cabal install ghc-mod
+"~/.cabal/bin 等に ghc-mod が置かれますが、
+"そこに正しくパスが通っていて実行可能であることを
+"確認してください． 
 
 NeoBundle 'eagletmt/ghcmod-vim'
 
-":GhcModCheck 
-"・GhcModCheckコマンドで GHC からのコンパイルエラー
-"・警告 を QuickFix に表示 コンパイルエラー
-"・警告がある場合は自動的に QuickFix を開く
 
-":GhcModCheckAsync 
-":GhcModCheckAsync コマンドは :GhcModCheck を (疑似)
-" 非同期 的に実行 ⇒ 保存時に自動的にチェックしてもストレスが少ない！
-
-":GhcModLint 
-"同様に :GhcModLint コマンドで
-"HLint からの提案を QuickFix に表示
-"非同期版の :GhcModLintAsnyc、
-"非同期的に :GhcModCheck と :GhcModLint の両方を行う :GhcModCheckAndLintAsync も
+"==========================================================
 
 ":GhcModType 
 "カーソル下の型を表示。
 "型を表示している部分はハイライトされる。
 "ハイライトは :GhcModTypeClear コマンドで消す。
-"式 パターン 束縛 の型を表示できる 
+"式 パターン 束縛 パターンマッチのパターン の型を表示できる 
 
 ":GhcModType の使い道 
 "コードリーディング時のサポートに なかなか型が合わない
 "↓
 "とりあえず undefined を書いてコンパイルを通して型を見る
+
+"Haskell そのものに慣れていなかったり，
+"利用している関数の型が複雑だったりするときに
+"「ここにどんな型の式を書けばいいんだ???」となることがある．
+"そんなときに，とりあえずその位置に undefined を書いて
+"コンパイルは通るコードにした後，
+"undefined の上で :GhcModType として型を見る，
+"というような活用方法もあると思う．
+
+"ハイライトの色は g:ghcmod_type_highlight に設定することができます． 
+"デフォルトでは 'Search' によってハイライトされます．
+
+
+
+
+"==========================================================
+
+
+":GhcModCheck 
+":GhcModCheck とすると，
+"現在のバッファで開いている Haskell のコードに対して
+"コンパイラのエラー・警告を
+"quickfix ウィンドウに表示します． 
+"何らかのエラー・警告があったときは
+"自動的にquickfix ウィンドウを開きます (勝手に :cwindow します)． 
+"同様に :GhcModLint とすると，
+"hlint からのメッセージを quickfix ウィンドウに表示します．
+"・GhcModCheckコマンドで GHC からのコンパイルエラー
+"・警告 を QuickFix に表示 コンパイルエラー
+"・警告がある場合は自動的に QuickFix を開く
+
+":GhcModLint 
+"同様に :GhcModLint コマンドで
+"HLint からの提案を QuickFix に表示
+
+
+"==========================================================
+
+"非同期チェックをサポート
+":GhcModCheckAndLintAsync   非同期版:下の両方
+":GhcModCheckAsync	    非同期版:GhcModCheckの
+":GhcModLintAsync	    非同期版:GhcModLintの
+
+"バッファ保存時に自動的に実行するには ~/.vimrc で
+"autocmd BufWritePost *.hs GhcModCheckAsync
+
+
+"非同期版の :GhcModLintAsnyc、
+"非同期的に :GhcModCheck と :GhcModLint の両方を行う 
+":GhcModCheckAndLintAsync も
+
+":GhcModCheckAsync 
+":GhcModCheckAsync コマンドは :GhcModCheck を (疑似)
+" 非同期 的に実行 ⇒ 保存時に自動的にチェックしてもストレスが少ない！
+
+
+
+"==========================================================
+
+":GhcModExpand コマンドを追加
+"ghc-mod 1.10.8 で追加された
+"ghc-mod expand のためのインターフェイス。
+"Template Haskell の展開の様子を quickfix に表示する。
+"ちなみに、ghc-mod expand と同等の出力は
+"ghc -ddump-splices でコンパイルしても得られる。
+
+
+
+
 
 "==========================================================
 
@@ -1295,6 +1361,12 @@ NeoBundle 'eagletmt/unite-haddock'
 "    vector.hoo を作成
 "hoogle combine *.hoo
 "   *.hoo をまとめて default.hoo を作成
+
+"==========================================================
+
+"ghcmod.vim と Unite hoogle の組み合わせ - eagletmt's blog
+"http://eagletmt.hateblo.jp/entry/2012/03/17/195122
+
 
 "==========================================================
 
