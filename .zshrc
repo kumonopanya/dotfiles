@@ -697,6 +697,8 @@ function chpwd() { ls -a }
 export WORDCHARS='*?-[]~!#%^(){}<>|`@#%^*()+:?'
 
 export LANG=ja_JP.UTF-8
+export TERM=xterm-256color
+export EDITOR=vim
 
 # 色付プロンプトの設定
 autoload colors
@@ -705,7 +707,13 @@ colors
 ## zsh editor
 autoload zed
 
-
+# Colours {{{
+local HOSTNAME_COLOR=$'%{\e[38;5;190m%}'
+local USERNAME_COLOR=$'%{\e[38;5;199m%}'
+local PATH_COLOR=$'%{\e[38;5;61m%}'
+local RVM_COLOR=$'%{\e[38;5;31m%}'
+local VCS_COLOR=$'%{\e[38;5;248m%}'
+# }}}
 
 #######################################################################
 #######################################################################
@@ -1110,6 +1118,24 @@ alias -s rb=vi
 
 #ruby pry
 #alias  irb='pry'
+
+# rails
+alias r="rails"
+alias rr="routes_cache | less"
+alias rrg="routes_cache | grep"
+alias rrr="routes_cache --force"
+alias rrrg="routes_cache --force | grep"
+alias rspec='rspec -c'
+alias fu='bundle exec rspec --format Fuubar --color spec'
+alias nyan='bundle exec rspec --format NyanCatFormatter --color spec'
+alias five='bundle exec rspec --format Fivemat --color spec'
+alias br='bundle exec rake spec'
+alias rdm='rake db:migrate'
+alias b='bundle exec'
+alias bundle-init='bundle install --path .bundle/gems'
+alias plog='grc powder applog' # dependent on grc
+alias powlog='grc powder applog' # dependent on grc
+alias rails-init='bundle install --path .bundle/gems && rake db:create db:migrate && powder link'
 
 
 
@@ -1747,6 +1773,45 @@ export PATH=~/.cabal/bin:$PATH
 
 
 #######################################################################
+#######################################################################
+#######################################################################
+
+#config/.zshrc at master · banyan/config
+#  https://github.com/banyan/config/blob/master/.zshrc
+
+# grep や ack で絞り込んだ結果を vim で開く
+# http://subtech.g.hatena.ne.jp/secondlife/20100819/1282200855
+alias -g V="| vim -"
+
+
+
+
+#######################################################################
+
+
+
+
+
+
+
+#######################################################################
+
+
+
+
+
+
+
+#######################################################################
+
+
+
+
+
+
+
+#######################################################################
+
 
 
 
