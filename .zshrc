@@ -1202,6 +1202,8 @@ alias  con='git config '
 alias show='git show'
 #alias show='git show HEAD'
 
+
+
 #変更が加えられたファイルを表示する
 alias   st='git status'
 
