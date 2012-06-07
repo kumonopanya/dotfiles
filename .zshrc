@@ -1111,6 +1111,8 @@ alias -s rb=vi
 
 #######################################################################
 #######################################################################
+#######################################################################
+#######################################################################
 
 #rails
 #alias  rai="rails "
@@ -1119,19 +1121,25 @@ alias -s rb=vi
 #ruby pry
 #alias  irb='pry'
 
+#######################################################################
+
+#config/.zshrc at master · banyan/config
+#  https://github.com/banyan/config/blob/master/.zshrc
+
+
 # rails
-alias r="rails"
-alias rr="routes_cache | less"
+#alias r="rails"
+#alias rr="routes_cache | less"
 alias rrg="routes_cache | grep"
 alias rrr="routes_cache --force"
 alias rrrg="routes_cache --force | grep"
-alias rspec='rspec -c'
-alias fu='bundle exec rspec --format Fuubar --color spec'
+#alias rspec='rspec -c'
+#alias fu='bundle exec rspec --format Fuubar --color spec'
 alias nyan='bundle exec rspec --format NyanCatFormatter --color spec'
 alias five='bundle exec rspec --format Fivemat --color spec'
-alias br='bundle exec rake spec'
+#alias br='bundle exec rake spec'
 alias rdm='rake db:migrate'
-alias b='bundle exec'
+#alias b='bundle exec'
 alias bundle-init='bundle install --path .bundle/gems'
 alias plog='grc powder applog' # dependent on grc
 alias powlog='grc powder applog' # dependent on grc
@@ -1139,6 +1147,8 @@ alias rails-init='bundle install --path .bundle/gems && rake db:create db:migrat
 
 
 
+#######################################################################
+#######################################################################
 #######################################################################
 
 #CREAM
@@ -1159,7 +1169,8 @@ alias rails-init='bundle install --path .bundle/gems && rake db:create db:migrat
 #alias   spec='rspec '
 #alias     sp='rspec '
 #alias  ser='ruby script/server'
-#alias   ser='rails server'
+alias   ser='rails server'
+alias   sss='rails server'
 
 
 
@@ -1184,8 +1195,12 @@ alias   ad='git add .'
 
 
 
+#######################################################################
+
 alias  con='git config '
+
 alias show='git show'
+#alias show='git show HEAD'
 
 #変更が加えられたファイルを表示する
 alias   st='git status'
@@ -1846,11 +1861,14 @@ alias    cd2='~/Workspace/ruby'
 # alias    ccd='cd ~/bootstrap'
 # alias    ccd='cd ~/py'
 # alias    ccd='cd ~/MetaRuby'
+# alias    ccd='cd ~/Rails/
 # alias    ccd='cd ~/Rails/blog'
+# alias    ccd='cd ~/Haskell'
+# alias    ccd='cd ~/Rails/omniauthtest'
 
 
-
-alias    ccd='cd ~/Haskell'
+alias    ccd='cd ~/Rails/sample_20120604/'
 ccd
+
 
 
