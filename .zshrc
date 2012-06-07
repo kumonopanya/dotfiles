@@ -1237,12 +1237,13 @@ alias push='git push -u origin master'
 alias  gpo='git push origin'
 alias  gpr='git pull --rebase'
 
-
 #log
 #alias  llo='git log'
-alias  glg='git log --pretty=oneline --abbrev-commit'
+alias   lo='git log --graph --all --decorate --oneline -n 10'
 alias  llo='git log --graph --oneline -n 10'
-alias   lo='git log --graph --all --decorate --oneline -n 20'
+
+alias  glo='git log --pretty="%ad --- %h - %s " --date=iso'
+alias gllo='git log --pretty=oneline --abbrev-commit'
 
 
 
