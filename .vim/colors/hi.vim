@@ -62,7 +62,7 @@ if version >= 700
 "   hi CursorLine cterm=underline
 
 	"縦方向のハイライト。
-	set cursorcolumn
+"	set cursorcolumn
 "	hi CursorColumn ctermfg=Green
 "	hi CursorColumn ctermbg=DarkGray
 "   hi CursorColumn guibg=#2d2d2d
@@ -90,7 +90,8 @@ set t_Co=256
 "hi Cursor       cterm=bold
 
 "ディレクトリ
-hi Directory cterm=bold "ctermfg=lightblue
+"hi Directory cterm=bold "ctermfg=lightblue
+hi Directory cterm=bold ctermfg=blue
 
 "青文字
 "コメント
@@ -108,7 +109,7 @@ hi Statement cterm=bold ctermfg=yellow
 hi Identifier ctermfg=LightBlue
 
 "クラス名色
-"hi PreProc cterm=bold "ctermfg=DarkCyan 
+hi PreProc cterm=bold "ctermfg=DarkCyan 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""tag" タブライン色
