@@ -1240,7 +1240,7 @@ alias  gpr='git pull --rebase'
 #log
 #alias  llo='git log'
 alias   lo='git log --graph --all --decorate --oneline -n 10'
-alias  llo='git log --graph --oneline -n 10'
+alias  llo='git log --graph --all --decorate --oneline -n 30'
 
 alias  glo='git log --pretty="%ad --- %h - %s " --date=iso'
 alias gllo='git log --pretty=oneline --abbrev-commit'
