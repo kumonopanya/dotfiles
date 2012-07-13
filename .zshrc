@@ -1869,9 +1869,13 @@ alias    cd2='~/Workspace/ruby'
 # alias    ccd='cd ~/Haskell'
 # alias    ccd='cd ~/Rails/omniauthtest'
 
+# alias    ff='githug'
+# alias    ccd='cd ~/gitlesson/git_hug'
+
 
 alias    ccd='cd ~/Rails/sample_20120604/'
-ccd
-
+#ccd
+alias    cd2='cd ~/RSpec'
+cd2
 
 

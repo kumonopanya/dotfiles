@@ -1112,8 +1112,27 @@ Bundle 'majutsushi/tagbar'
 
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'cakebaker/scss-syntax.vim'
-NeoBundle 'css_color.vim'
 
+
+"==========================================================
+
+" #rrggbb or #rgb パターンのカラーに色をつける。
+"【Vim】Vimの起動が遅い - 徒然なるままに
+"http://d.hatena.ne.jp/sea_mountain/20110521/1305987532
+"colorizer - Highlight #rrggbb or #rgb color : vim online
+"http://www.vim.org/scripts/script.php?script_id=3567
+"lilydjwg/colorizer · GitHub
+"https://github.com/lilydjwg/colorizer
+
+NeoBundle 'lilydjwg/colorizer'
+
+"コマンド
+"ColorHighlight	- start/update highlighting 
+"ColorClear      - clear all highlights 
+"ColorToggle     - toggle highlights 
+
+"ショートカット(デフォルト)
+"<leader>tc
 
 
 "==========================================================
