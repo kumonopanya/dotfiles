@@ -42,7 +42,6 @@
 "sudo gem install vim-ruby
 "vim-ruby-install.rb
 
-
 "==========================================================
 
 
@@ -350,7 +349,7 @@ NeoBundle 'thinca/vim-ref'
 "let g:ref_refe_cmd = '~/rubyrefm/refe-1_9_2'
 
 " vimprocをインストールしてない場合は0を指定
-"let g:ref_use_vimproc = 0   
+"let g:ref_use_vimproc = 0
 
 "操作例
 ":Unite ref/perldoc
@@ -576,7 +575,7 @@ NeoBundle 'matchit.zip'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""tag" JavaScript 文法チェック 
+""tag" JavaScript 文法チェック
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "flymake rubyのシンタックスチェック、設定はruby.vimに。
@@ -975,7 +974,7 @@ let g:Powerline_colorscheme="skwp"
 ""tag" taglist.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"Taglist プラグインがヤバい件 - @sugamasao.blog.title 
+"Taglist プラグインがヤバい件 - @sugamasao.blog.title
 "  http://d.hatena.ne.jp/seiunsky/20080503/1209841493
 
 "パッケージマネージャから
@@ -1127,9 +1126,9 @@ NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'lilydjwg/colorizer'
 
 "コマンド
-"ColorHighlight	- start/update highlighting 
-"ColorClear      - clear all highlights 
-"ColorToggle     - toggle highlights 
+"ColorHighlight	- start/update highlighting
+"ColorClear      - clear all highlights
+"ColorToggle     - toggle highlights
 
 "ショートカット(デフォルト)
 "<leader>tc
@@ -1175,12 +1174,12 @@ NeoBundle 'h1mesuke/vim-alignta.git'
 "HTML の閉じタグを自動挿入する
 NeoBundle'closetag.vim'
 
-"閉じタグの欲しいところにカーソルを持っていき、 
+"閉じタグの欲しいところにカーソルを持っていき、
 "insertモードで、
 "Ctrl-_
 "を入力します。
 
-"入力個所の後ろに閉じタグがあっても、 
+"入力個所の後ろに閉じタグがあっても、
 "気にせず、閉じタグを挿入されてしまいます。
 
 ":let g:closetag_html_style=1
@@ -1207,7 +1206,7 @@ NeoBundle'closetag.vim'
 
 "シナプティックパッケージマネージャから
 "ghc
-"haskell-platform 
+"haskell-platform
 "をインストールしておく。
 
 ".ghciファイルを作る。
@@ -1242,20 +1241,20 @@ NeoBundle'closetag.vim'
 "cabal install ghc-mod
 "~/.cabal/bin 等に ghc-mod が置かれますが、
 "そこに正しくパスが通っていて実行可能であることを
-"確認してください． 
+"確認してください．
 
 NeoBundle 'eagletmt/ghcmod-vim'
 
 
 "==========================================================
 
-":GhcModType 
+":GhcModType
 "カーソル下の型を表示。
 "型を表示している部分はハイライトされる。
 "ハイライトは :GhcModTypeClear コマンドで消す。
-"式 パターン 束縛 パターンマッチのパターン の型を表示できる 
+"式 パターン 束縛 パターンマッチのパターン の型を表示できる
 
-":GhcModType の使い道 
+":GhcModType の使い道
 "コードリーディング時のサポートに なかなか型が合わない
 "↓
 "とりあえず undefined を書いてコンパイルを通して型を見る
@@ -1268,7 +1267,7 @@ NeoBundle 'eagletmt/ghcmod-vim'
 "undefined の上で :GhcModType として型を見る，
 "というような活用方法もあると思う．
 
-"ハイライトの色は g:ghcmod_type_highlight に設定することができます． 
+"ハイライトの色は g:ghcmod_type_highlight に設定することができます．
 "デフォルトでは 'Search' によってハイライトされます．
 
 
@@ -1277,20 +1276,20 @@ NeoBundle 'eagletmt/ghcmod-vim'
 "==========================================================
 
 
-":GhcModCheck 
+":GhcModCheck
 ":GhcModCheck とすると，
 "現在のバッファで開いている Haskell のコードに対して
 "コンパイラのエラー・警告を
-"quickfix ウィンドウに表示します． 
+"quickfix ウィンドウに表示します．
 "何らかのエラー・警告があったときは
-"自動的にquickfix ウィンドウを開きます (勝手に :cwindow します)． 
+"自動的にquickfix ウィンドウを開きます (勝手に :cwindow します)．
 "同様に :GhcModLint とすると，
 "hlint からのメッセージを quickfix ウィンドウに表示します．
 "・GhcModCheckコマンドで GHC からのコンパイルエラー
 "・警告 を QuickFix に表示 コンパイルエラー
 "・警告がある場合は自動的に QuickFix を開く
 
-":GhcModLint 
+":GhcModLint
 "同様に :GhcModLint コマンドで
 "HLint からの提案を QuickFix に表示
 
@@ -1307,10 +1306,10 @@ NeoBundle 'eagletmt/ghcmod-vim'
 
 
 "非同期版の :GhcModLintAsnyc、
-"非同期的に :GhcModCheck と :GhcModLint の両方を行う 
+"非同期的に :GhcModCheck と :GhcModLint の両方を行う
 ":GhcModCheckAndLintAsync も
 
-":GhcModCheckAsync 
+":GhcModCheckAsync
 ":GhcModCheckAsync コマンドは :GhcModCheck を (疑似)
 " 非同期 的に実行 ⇒ 保存時に自動的にチェックしてもストレスが少ない！
 
@@ -1343,7 +1342,7 @@ NeoBundle 'eagletmt/ghcmod-vim'
 "  https://github.com/ujihisa/neco-ghc
 NeoBundle 'ujihisa/neco-ghc'
 
-"オムニ補完 
+"オムニ補完
 "Haskell のファイルを開いているバッファで
 "オムニ補完の関数をnecoghc#omnifunc に設定
 
