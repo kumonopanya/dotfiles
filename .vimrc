@@ -153,21 +153,86 @@ NeoBundle 'Shougo/neocomplcache-snippets-complete'
 "  https://github.com/vim-ruby/vim-ruby
 NeoBundle 'vim-ruby/vim-ruby'
 
+"==========================================================
+
 "tpope/vim-rails
 "  https://github.com/tpope/vim-rails
 "エラーが出た。neocomplcacheと被っている？
+
 "Bundle 'tpope/vim-rails'
-"NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-rails'
+
+" :R(model/controller/view)
+" カレンドバッファに対応したModelやControllerにとべます。
+" 例えば，UsersControllerを開いているときに，
+" :Rmodelすると/app/models/user.rbにとべます．
+
+" :R(model/controller/view) name
+" カレントバッファに対応していないファイルを開くために使う．
+" 例えば，/app/models/qiita.rbにとびたいときは，
+" :Rmodel qiitaします．ちなみにname部分は補完が効きます．
+
+" ちなみにR[command]のcommandにはmodelやcontroller以外に
+" helper/spec/javascript/stylesheet/unittest/plugin/lib/task/layout/migration/schema
+" などを指定できます．
+
+" :A, :R
+" :Aと:Rはよく似ています．というか，違うのは確かなのですが，違いがよくわかってます．helpを読むと:Aはalternate fileにとび，:Rはrelated fileにとぶそうです．よくわからない．
+" 手元で適当に打ち込んでみると，基本的に:Aは対応するテストファイルにとびます．一方，:RはカレントバッファがModelならば，db/schema.rbにとびます．カレントバッファがControllerかつカーソル位置がアクションメソッド内あれば，対応するViewにとびます．カーソル位置がアクションメソッドの外であれば，対応するHelperにとびます．
+
+" :R path
+" config/nvironment.rbなどRailsプロジェクトのルートからの相対パスを指定してファイルを開けます．
+
+" :RT，:RS，:RV，:RD
+" 上記コマンドのRまたはAの直後にオプションをつけるとファイルを開く方法を指定できます．
+" :RT : 新規タブ
+" :RS : 画面を水平分割
+" :RV : 画面を垂直分割
+" :RD : カレントバッファにロード
+
+" gf
+" カーソル位置のシンボルに応じて定義元にジャンプしてくれます．
+" 例えば，Use*r.find_all_by_idでgfするとapp/models/user.rbを開けます．
+
+" カスタム定義
+
+" 以上はデフォルトで用意されているジャンプ系のコマンドですが，:R[commmand]の[command]部分をユーザが定義することができます．
+" 僕は次のようなコマンドを追加しています．
+" controllers/apiおよびcontrollers/tmpl以下へのジャンプ，:Rconfigコマンド（デフォルトではconfig/routes.rbにとぶ），:Rcontroller => :Rcのようなaliasを定義しています．
+
+" .vimrc
+" autocmd User Rails.controller* Rnavcommand api app/controllers/api -glob=**/* -suffix=_controller.rb
+" autocmd User Rails.controller* Rnavcommand tmpl app/controllers/tmpl -glob=**/* -suffix=_controller.rb
+" autocmd User Rails Rnavcommand config config   -glob=*.*  -suffix= -default=routes.rb
+" autocmd User Rails nmap :<C-u>Rcontroller :<C-u>Rc
+" autocmd User Rails nmap :<C-u>Rmodel :<C-u>Rm
+" autocmd User Rails nmap :<C-u>Rview :<C-u>Rv
+
+
+
+"==========================================================
 
 "Vim-users.jp - Hack #209: Vim で Ruby on Rails の開発を行なう
 "  http://vim-users.jp/2011/03/hack209/
-"rails.vim
 
 "Vimを使ったRuby On Rails開発環境の構築 - ナレッジエース
 "  http://blog.blueblack.net/item_133
 
 "Rails関連ファイルで文字コードをUFT-8に設定
 "au User Rails* set fenc=utf-8
+
+"==========================================================
+
+"Vimで快適なRailsライフを #AdventCalendar #開発環境 #Rails #Ruby #Vim - Qiita
+"http://qiita.com/items/57e726312ffe47592867
+NeoBundle 'dbext.vim'
+
+"rails.vimと合わせてインストールしておくと，
+"database.ymlの設定を自動で読み込んでくれて，
+":Select * from users;のようにVimから直接SQLを叩いて結果を見ることができます．
+
+
+"==========================================================
 
 "==========================================================
 
@@ -1076,6 +1141,9 @@ Bundle 'majutsushi/tagbar'
 "Syntastic というシンタックスチェックプラグインが凄そう - Heavens hell
 "  http://d.hatena.ne.jp/heavenshell/20120106/1325866974
 
+" syntasticはIDEみたいにエラーがあったら左にマークを表示してくれる。
+" デフォルトでファイル保存時に走るので便利。
+
 "scrooloose/syntastic · GitHub
 "  https://github.com/scrooloose/syntastic
 """""NeoBundle 'scrooloose/syntastic.git'
@@ -1649,11 +1717,7 @@ set mouse=a
 
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"自動インデント
-set autoindent
 
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
@@ -1673,9 +1737,6 @@ set nostartofline
 " "press <Enter> to continue"
 " コマンドラインの高さを2行に
 set cmdheight=2
-
-
-
 
 " Use visual bell instead of beeping when doing something wrong
 " ビープの代わりにビジュアルベル（画面フラッシュ）を使う
@@ -1718,9 +1779,6 @@ autocmd BufNewFile,BufRead *.h    set tabstop=4 shiftwidth=4
 
 "autocmd BufNewFile,BufRead *.js   set filetype=javascript
 
-
-
-
 "ファイルタイプを自動判別してインデントを指定する
 "if has("autocmd")
 "    " ファイルタイプ別インデント、プラグインを有効にする
@@ -1731,6 +1789,7 @@ autocmd BufNewFile,BufRead *.h    set tabstop=4 shiftwidth=4
 "        \   exe "normal g`\"" |
 "        \ endif
 "endif
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1765,10 +1824,34 @@ set backspace=2
 "キーボードで<Tab>キーを押した時に挿入される空白の量、0の場合には挿入されるのは'tabstop'で指定した量
 "set softtabstop=0
 
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"自動インデント
+" 自動的にインデントを挿入してくれる。
+" expandtab とのコンボが最凶
+"set autoindent
+set smartindent
+"set cindent
+"set indentexpr
+
 "expandtabならば、タブ文字をスペースに変換。
 "noexpandtabならば、スペースをタブ文字に変換。
-"set expandtab
+set expandtab
 "set noexpandtab
+
+
+
+"'autoindent'  一つ前の行に基づくインデント
+
+"'smartindent' 'autoindent'と同様だが幾つかのC構文を認識し、適切な箇所のインデントを増減させる。
+
+"'cindent' 他の2つの方法よりも賢く動作し、設定することで異なるインデントスタイルにも対応できる。
+
+"'indentexpr'  この中で一番融通が利く: ある行のインデントを計算するのにVimスクリプトを実行する。
+"この方法が有効である(空でない)時にはその他 のインデントは抑制される。
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

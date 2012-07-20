@@ -9,9 +9,8 @@ setl tabstop=2
 setl shiftwidth=2
 setl textwidth=0
 setl softtabstop=4 
-setl expandtab
 
-"setl 
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

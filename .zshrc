@@ -1338,13 +1338,6 @@ alias sufe='sudo find / -print | grep'
 #rvm 初期設定
 #ruby-1.9.2@rails3
 #rvm default
-# rvm use 1.9.3@rails3 --default
-# rvm use 1.9.3@global --default
-# rvm use 1.8.7@RSpec --default
-# rvm use 1.9.3@RSpec --default
-rvm use 1.9.2@rails --default
-
-
 
 #現在の情報の確認用alias
 #rvm
@@ -1362,44 +1355,7 @@ alias rr="gem list;echo;git --version;echo rspec;rspec -v;echo gem;gem -v;rvm --
 #rvm gemset create rails3
 #rvm gemset use rails3
 
-#######################################################################
 
-#gemset を作成する。
-#gemset を作成する。
-#gemset を作成する。
-
-#RVM で 使用している Ruby のバージョン毎に、
-#共通の gem を インストールするための gemset。
-
-# rvm gemset use global
-# rvm use 1.9.3@global --default
-
-# rvm use 1.9.3
-# rvm gemset create RSpec
-# rvm gemset use RSpec
-# rvm use 1.9.3@RSpec --default
-
-# rvm list known
-# rvm install 1.9.2
-# rvm use 1.9.2
-# rvm gemset create rails
-# rvm use 1.9.2@rails --default
-
-# rvm use 1.8.7
-# rvm gemset create RSpec
-# rvm gemset use RSpec
-# rvm use 1.8.7@RSpec --default
-
-# gem をバージョンを指定してインストール。
-# gem install rspec -v 1.0.8
-
-
-
-#######################################################################
-
-#alias 19="rvm use 1.9.3@rails3
-#alias 18="rvm use 1.8.7@rails2
-#alias rs="rvm use 1.9.3@RSpec
 
 #######################################################################
 
@@ -1851,6 +1807,59 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 #######################################################################
 #######################################################################
 
+# rvm use 1.9.3@rails3 --default
+# rvm use 1.9.3@global --default
+# rvm use 1.8.7@RSpec --default
+# rvm use 1.9.3@RSpec --default
+# rvm use 1.9.2@rails --default
+
+#######################################################################
+
+#gemset を作成する。
+#gemset を作成する。
+#gemset を作成する。
+
+#RVM で 使用している Ruby のバージョン毎に、
+#共通の gem を インストールするための gemset。
+
+# rvm gemset use global
+# rvm use 1.9.3@global --default
+
+# rvm use 1.9.3
+# rvm gemset create RSpec
+# rvm gemset use RSpec
+# rvm use 1.9.3@RSpec --default
+
+# rvm list known
+# rvm install 1.9.2
+# rvm use 1.9.2
+# rvm gemset create rails
+# rvm use 1.9.2@rails --default
+
+# rvm use 1.8.7
+# rvm gemset create RSpec
+# rvm gemset use RSpec
+# rvm use 1.8.7@RSpec --default
+
+# rvm gemset create raisl31
+# rvm gemset use raisl31
+ rvm use 1.9.2@raisl31 --default
+
+# gem をバージョンを指定してインストール。
+# gem install rspec -v 1.0.8
+
+
+#######################################################################
+
+alias 19="rvm use 1.9.3@rails3"
+alias 18="rvm use 1.8.7@rails2"
+alias rs="rvm use 1.9.3@RSpec"
+alias 31="rvm use 1.9.2@raisl31"
+
+#######################################################################
+#######################################################################
+#######################################################################
+
 #alias     =' '
 #alias     =' '
 #alias     =' '
@@ -1876,6 +1885,7 @@ alias    cd2='~/Workspace/ruby'
 alias    ccd='cd ~/Rails/sample_20120604/'
 #ccd
 alias    cd2='cd ~/RSpec'
-cd2
+alias    cd3='cd ~/rails31'
+cd3
 
 
